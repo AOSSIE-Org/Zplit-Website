@@ -1,14 +1,16 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  output: "export",
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'aossie.org',
-      },
-    ],
+    unoptimized: true,
+  },
+  turbopack: {
+    root: path.resolve(process.cwd()),
+    resolveAlias: {
+      "next-intl/config": "./src/i18n/request.ts",
+    },
   },
 };
 

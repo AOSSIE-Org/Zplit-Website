@@ -1,0 +1,52 @@
+import { getTranslations } from 'next-intl/server';
+import type { Metadata } from 'next';
+
+export async function generateLocaleMetadata(
+  locale: string,
+  namespace: string
+): Promise<Metadata> {
+  const t = await getTranslations({ locale, namespace });
+
+  const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://zplit.aossie.org';
+  const siteUrl = rawSiteUrl.replace(/\/$/, '');
+  const localeUrl = `${siteUrl}/${locale}`;
+
+
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+    icons: {
+      icon: '/brand/icons/favicon.ico',
+    },
+    alternates: {
+      canonical: localeUrl,
+      languages: {
+        en: `${siteUrl}/en`,
+        hi: `${siteUrl}/hi`,
+      },
+    },
+    openGraph: {
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      url: localeUrl,
+
+      siteName: 'Zplit',
+      images: [
+        {
+          url: `${siteUrl}/brand/icons/zplit_logo.svg`,
+          width: 500,
+          height: 500,
+          alt: 'Zplit Logo',
+        },
+      ],
+      locale: locale === 'en' ? 'en_US' : 'hi_IN',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('metaTitle'),
+      description: t('metaDescription'),
+      images: [`${siteUrl}/brand/icons/zplit_logo.svg`],
+    },
+  };
+}
