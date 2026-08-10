@@ -1,291 +1,387 @@
 <!-- Don't delete it -->
-<div name="readme-top"></div>
+<div id="readme-top"></div>
 
 <!-- Organization Logo -->
-<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 16px;">
-  <img alt="AOSSIE" src="public/aossie-logo.svg" width="175">
-  <img src="public/todo-project-logo.svg" width="175" />
-</div>
+<p align="center">
+  <img src="public/brand/icons/aossie_logo.svg" width="175" alt="AOSSIE logo" />
+  &nbsp;&nbsp;
+  <img src="public/brand/icons/zplit_logo.svg" width="175" alt="Zplit logo" />
+</p>
 
-&nbsp;
-
-<!-- Organization Name -->
-<div align="center">
-
-[![Static Badge](https://img.shields.io/badge/aossie.org/TODO-228B22?style=for-the-badge&labelColor=FFC517)](https://TODO.aossie.org/)
-
-<!-- Correct deployed url to be added -->
-
-</div>
+<p align="center">
+  <a href="https://aossie.org">
+    <img src="https://img.shields.io/badge/Zplit-https%3A%2F%2Fzplit.aossie.org-228B22?style=for-the-badge&labelColor=FFC517" alt="Zplit AOSSIE Badge" />
+  </a>
+</p>
 
 <!-- Organization/Project Social Handles -->
 <p align="center">
-<!-- Telegram -->
-<a href="https://t.me/StabilityNexus">
-<img src="https://img.shields.io/badge/Telegram-black?style=flat&logo=telegram&logoColor=white&logoSize=auto&color=24A1DE" alt="Telegram Badge"/></a>
-&nbsp;&nbsp;
-<!-- X (formerly Twitter) -->
-<a href="https://x.com/aossie_org">
-<img src="https://img.shields.io/twitter/follow/aossie_org" alt="X (formerly Twitter) Badge"/></a>
-&nbsp;&nbsp;
-<!-- Discord -->
-<a href="https://discord.gg/hjUhu33uAn">
-<img src="https://img.shields.io/discord/1022871757289422898?style=flat&logo=discord&logoColor=white&logoSize=auto&label=Discord&labelColor=5865F2&color=57F287" alt="Discord Badge"/></a>
-&nbsp;&nbsp;
-<!-- LinkedIn -->
-<a href="https://www.linkedin.com/company/aossie/">
-  <img src="https://img.shields.io/badge/LinkedIn-black?style=flat&logo=LinkedIn&logoColor=white&logoSize=auto&color=0A66C2" alt="LinkedIn Badge"></a>
-&nbsp;&nbsp;
-<!-- Youtube -->
-<a href="https://www.youtube.com/@AOSSIE-Org">
-  <img src="https://img.shields.io/youtube/channel/subscribers/UCKVVLbawY7Gej_3o2WKsoiA?style=flat&logo=youtube&logoColor=white%20&logoSize=auto&labelColor=FF0000&color=FF0000" alt="Youtube Badge"></a>
-</p>
-
-
-<p align="center">
-  <a href="https://scorecard.dev/viewer/?uri=github.com/AOSSIE-Org/{repo}">
-    <img src="https://api.scorecard.dev/projects/github.com/AOSSIE-Org/{repo}/badge" alt="OpenSSF Scorecard"/>
+  <a href="https://t.me/StabilityNexus">
+    <img src="https://img.shields.io/badge/Telegram_AOSSIE-black?style=flat&logo=telegram&logoColor=white&color=24A1DE" alt="Telegram Badge"/>
   </a>
-  &nbsp;&nbsp;
-  <a href="./BestPracticesChecklist.md">
-    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FAOSSIE-Org%2Frepo%2Fmain%2Fchecklist-status.json&query=%24.percent&suffix=%25&label=Best%20Practices&logo=openssf" alt="Best Practices"/>
+  &nbsp;
+  <a href="https://x.com/aossie_org">
+    <img src="https://img.shields.io/twitter/follow/aossie_org" alt="X Badge"/>
   </a>
-  &nbsp;&nbsp;
-  <a href="https://github.com/gitleaks/gitleaks">
-    <img src="https://img.shields.io/badge/protected%20by-gitleaks-blue" alt="Protected by Gitleaks"/>
+  &nbsp;
+  <a href="https://discord.gg/hjUhu33uAn">
+    <img src="https://img.shields.io/discord/995968619034984528?style=flat&logo=discord&logoColor=white&label=Discord%20AOSSIE&labelColor=5865F2&color=57F287" alt="Discord AOSSIE"/>
+  </a>
+  &nbsp;
+  <a href="https://discord.gg/YzDKeEfWtS">
+    <img src="https://img.shields.io/discord/995968619034984528?style=flat&logo=discord&logoColor=white&label=Discord%20Stability%20Nexus&labelColor=5865F2&color=57F287" alt="Discord Stability Nexus"/>
+  </a>
+  &nbsp;
+  <a href="https://www.linkedin.com/company/aossie/">
+    <img src="https://img.shields.io/badge/LinkedIn_AOSSIE-black?style=flat&logo=LinkedIn&logoColor=white&color=0A66C2" alt="LinkedIn Badge"/>
+  </a>
+  &nbsp;
+  <a href="https://www.youtube.com/@AOSSIE-Org">
+    <img src="https://img.shields.io/badge/Subscribe_to_AOSSIE-red?style=flat&logo=youtube&logoColor=white" alt="Subscribe to AOSSIE"/>
+  </a>
+  &nbsp;
+  <a href="https://www.youtube.com/@StabilityNexus">
+    <img src="https://img.shields.io/badge/Subscribe_to_Stability_Nexus-red?style=flat&logo=youtube&logoColor=white" alt="Subscribe to Stability Nexus"/>
   </a>
 </p>
+
 
 ---
 
 <div align="center">
-<h1>TODO: Project Name</h1>
+<h1>Zplit (AOSSIE Webpage Template)</h1>
 </div>
 
-[TODO](https://TODO.stability.nexus/) is a ... TODO: Project Description.
+Zplit is an open-source mobile application designed to simplify group expense management through a decentralized architecture. Zplit's core features are expense tracking, group management, and debt calculation, while prioritizing user data privacy, offline functionality, and peer-to-peer synchronization.
+
+This website is a high-performance, developer-friendly webpage built on **Next.js 16 (App Router)**, **React 19**, **Tailwind CSS v4**, and pre-configured for **Internationalization (i18n)** and **Localization (l10n)** using **next-intl**.
 
 ---
 
-## 🚀 Features
+## 🚀 Project's Features
 
-TODO: List your main features here:
-
-- **Feature 1**: Description
-- **Feature 2**: Description
-- **Feature 3**: Description
-- **Feature 4**: Description
+- **Decentralized Architecture**: Sync directly between devices using WiFi Direct, Bluetooth, NFC, and QR codes. No central servers required.
+- **Privacy First**: All data is encrypted and stored locally on your device. You own your financial data completely.
+- **Smart Expense Tracking**: Custom splits (equal, percentage, or custom amounts) with automatic debt calculation.
+- **Receipt OCR**: Snap a photo of any receipt, and on-device machine learning automatically extracts the details.
 
 ---
 
 ## 💻 Tech Stack
 
-TODO: Update based on your project
+### Mobile App
+- **Frontend**: Flutter
+- **State Management**: Riverpod
+- **Local Storage**: Hive / Drift
+- **P2P Sync**: WiFi Direct, Bluetooth, NFC, and QR codes
 
-### Frontend
-- React / Next.js / Flutter / React Native
-- TypeScript
-- TailwindCSS
-
-### Backend
-- Flask / FastAPI / Node.js / Supabase
-- Database: PostgreSQL / SQLite / MongoDB
-
-### AI/ML (if applicable)
-- LangChain / LangGraph / LlamaIndex
-- Google Gemini / OpenAI / Anthropic Claude
-- Vector Database: Weaviate / Pinecone / Chroma
-- RAG / Prompt Engineering / Agent Frameworks
-
-### Blockchain (if applicable)
-- Solidity / solana / cardano / ergo Smart Contracts
-- Hardhat / Truffle / foundry
-- Web3.js / Ethers.js / Wagmi
-- OpenZeppelin / alchemy / Infura
+### Web App (This Repository)
+- **Framework**: Next.js 16 (App Router), React 19
+- **Styling**: Tailwind CSS v4, CSS Variables
+- **I18n / Localization**: next-intl
+- **Theme**: next-themes
 
 ---
 
-## ✅ Project Checklist
+## 📋 Project Maturity & TODO Checklist
 
-TODO: Complete applicable items based on your project type
+In the checklist below, mark the items that have been completed for your project:
 
-- [ ] **The protocol** (if applicable):
-   - [ ] has been described and formally specified in a paper.
-   - [ ] has had its main properties mathematically proven.
-   - [ ] has been formally verified.
-- [ ] **The smart contracts** (if applicable):
-   - [ ] were thoroughly reviewed by at least two knights of The Stable Order.
-   - [ ] were deployed to: [Add deployment details]
-- [ ] **The mobile app** (if applicable):
-   - [ ] has an _About_ page containing the Stability Nexus's logo and pointing to the social media accounts of the Stability Nexus.
-   - [ ] is available for download as a release in this repo.
-   - [ ] is available in the relevant app stores.
-- [ ] **The AI/ML components** (if applicable):
-   - [ ] LLM/model selection and configuration are documented.
-   - [ ] Prompts and system instructions are version-controlled.
-   - [ ] Content safety and moderation mechanisms are implemented.
-   - [ ] API keys and rate limits are properly managed.
+* [x] The project has a logo (`public/brand/icons/aossie_logo.svg`).
+* [x] The project has a favicon (`public/brand/icons/favicon.ico`).
+* [x] The web frontend:
+   - [x] Has proper title and metadata.
+   - [x] Has proper open graph metadata, to ensure that it is shown well when shared in social media.
+   - [x] Has a footer and header with AOSSIE logos and social handles.
+   - [x] Uses React Server Components by default, introducing Client Components (`"use client"`) only when interactivity or client hooks are required.
+   - [x] Is deployed to GitHub Pages via a GitHub Workflow (`.github/workflows/nextjs.yml`).
+   - [x] Has automated CI build and lint validation (`.github/workflows/ci.yml`).
+   - [x] Has CodeRabbit automated AI code review (`.coderabbit.yml`).
+   - [x] Has open-source legal compliance (`DCO.md`, `COPYRIGHT.md`, `Contributors.md`).
 
 ---
 
-## 🔗 Repository Links
+## 🚀 Website's Features
 
-TODO: Update with your repository structure
-
-1. [Main Repository](https://github.com/AOSSIE-Org/TODO)
-2. [Frontend](https://github.com/AOSSIE-Org/TODO/tree/main/frontend) (if separate)
-3. [Backend](https://github.com/AOSSIE-Org/TODO/tree/main/backend) (if separate)
-
----
-
-## 🏗️ Architecture Diagram
-
-TODO: Add your system architecture diagram here
-
-```
-[Architecture Diagram Placeholder]
-```
-
-You can create architecture diagrams using:
-- [Draw.io](https://draw.io)
-- [Excalidraw](https://excalidraw.com)
-- [Lucidchart](https://lucidchart.com)
-- [Mermaid](https://mermaid.js.org) (for code-based diagrams)
-
-Example structure to include:
-- Frontend components
-- Backend services
-- Database architecture
-- External APIs/services
-- Data flow between components
+- **Next.js 16 & React 19:** Utilizing the latest Server Components, Client Actions, and async routing paradigms.
+- **Tailwind CSS v4:** Modern utility-first styling with native CSS variables and streamlined postcss integrations.
+- **Dual Theme System:** Flash-free light, dark, and system-preferred themes using `next-themes` and Tailwind CSS v4 custom variants.
+- **Robust i18n & l10n:** Deeply integrated multi-language support:
+  - Automatic locale detection based on browser preferences.
+  - Subpath routing (e.g., `/hi` for Hindi, and `/en` for English as default) with clean URL prefixing.
+  - Sleek, interactive language switcher client component.
+  - Zero-bundle-size footprint for static translations using Server Components & Client `useTranslations`.
+- **Developer Experience:** Strict TypeScript compilation and ES Lint setup.
+- **Application Control Compatibility:** Configured with manual Webpack & Turbopack alias resolution to bypass restrictive execution environments blocking native binary compiles.
+- **Open-Source Governance & CI/CD:** Integrated GitHub Actions workflows (`ci.yml`, `nextjs.yml`, `label-merge-conflicts.yml`), `.coderabbit.yml`, and `DCO.md` legal documentation.
+- **AI Agent Pairing Ready:** Includes `AGENTS.md` and `CLAUDE.md` to guide AI development agents.
 
 ---
 
-## 🔄 User Flow
+## 📂 Project Structure
 
-TODO: Add user flow diagrams showing how users interact with your application
+Here is a breakdown of the key i18n directories and files:
 
+```text
+├── .github/
+│   └── workflows/          # GitHub Actions (CI, GitHub Pages deployment, merge conflict checks)
+├── next.config.ts          # Alias-wrapped Next configuration
+├── public/                 # Static assets, robots.txt, assetlinks.json, llms.txt
+│   ├── .well-known/
+│   ├── llms.txt
+│   ├── robots.txt
+│   └── brand/
+│       ├── Brand.md            # Official AOSSIE brand guidelines document
+│           ├── aossie_logo.svg              # AOSSIE Vector logo
+│           ├── stability_nexus_logo.svg     # Stability Nexus Vector logo
+│           ├── zplit_logo.svg               # Zplit Vector logo
+│           └── favicon.ico                  # Browser tab icon
+├── src/
+│   ├── config/
+│   │   └── languages.ts        # Central registry of supported languages & locales
+│   ├── i18n/
+│   │   ├── routing.ts          # Core i18n routing parameters (locales, defaults)
+│   │   ├── request.ts          # Server-side translation dictionary loading configuration
+│   │   ├── metadata.ts         # Configuration data, SEO values, or reflection data for a project
+│   │   └── navigation.ts       # Type-safe navigation helpers (Link, useRouter, etc.)
+│   ├── messages/
+│   │   ├── en.json             # English translation dictionary
+│   │   └── hi.json             # Hindi translation dictionary
+│   ├── app/
+│   │   ├── page.tsx            # Root page redirecting to default locale (/en) for static export
+│   │   ├── sitemap.ts          # Statically generated localized sitemaps
+│   │   └── [locale]/           # Localized route group
+│   │       ├── layout.tsx      # Multi-lingual layout injecting client context & translations
+│   │       ├── page.tsx        # Localized Landing Page ("use client")
+│   │       ├── globals.css     # Global styles for the app segment
+│   │       ├── error.tsx       # Localized Error Boundary page fallback
+│   │       └── not-found.tsx   # Localized 404 page fallback
+│   └── components/
+│       ├── LanguageSwitcher.tsx # Dropdown element to switch interface locales interactively
+│       ├── ThemeToggle.tsx      # Multi-state theme switch with micro-animations
+│       └── providers/
+│           ├── theme-provider.tsx # Next-themes client wrapper component
+│           └── lenis-provider.tsx # Lenis smooth scrolling provider wrapper
+├── .coderabbit.yml         # Automated AI Code Review configuration
+├── COPYRIGHT.md            # Copyright terms
+├── Contributors.md         # Project contributors list
+└── DCO.md                  # Developer Certificate of Origin
 ```
-[User Flow Diagram Placeholder]
-```
-
-### Key User Journeys
-
-TODO: Document main user flows:
-
-1. **User Journey 1**: Description
-   - Step 1
-   - Step 2
-   - Step 3
-
-2. **User Journey 2**: Description
-   - Step 1
-   - Step 2
-   - Step 3
-
-3. **User Journey 3**: Description
-   - Step 1
-   - Step 2
-   - Step 3
 
 ---
 
-## �🍀 Getting Started
+## 🛠️ Usage Guide
 
-### Prerequisites
+### 1. Adding a New Language
 
-TODO: List what developers need installed
+To add support for a new language (e.g., French - `fr`):
 
-- Node.js 18+ / Python 3.9+ / Flutter SDK
-- npm / yarn / pnpm
-- [Any specific tools or accounts needed]
+1. **Register the language:** Open [`src/config/languages.ts`](src/config/languages.ts) and add your new language to the `languages` array:
+   ```typescript
+   export const languages: Language[] = [
+     { code: 'en', name: 'English', localName: 'English' },
+     { code: 'hi', name: 'Hindi', localName: 'हिन्दी' },
+     { code: 'fr', name: 'French', localName: 'Français' } // Add this line
+   ];
+   ```
 
-### Installation
+2. **Create the translation catalog:** Under `src/messages/`, create a new file named `fr.json`:
+   ```json
+   {
+     "Home": {
+       "heading": "Bienvenue sur AOSSIE Webpage Starter"
+     }
+   }
+   ```
 
-TODO: Provide detailed setup instructions
+3. That's it! Next.js and `next-intl` will automatically register the locale, add it to the routing tables, and handle redirection for visitors matching `fr` browser preferences.
 
-#### 1. Clone the Repository
+---
 
-```bash
-git clone https://github.com/AOSSIE-Org/TODO.git
-cd TODO
+### 2. Translating Text in Pages and Components
+
+#### Server Components (Recommended for Static Content)
+By default, server components can load translations statically without shipping translation JSONs to the client bundle:
+
+```tsx
+import { useTranslations } from 'next-intl';
+
+export default function Section() {
+  const t = useTranslations('Home');
+  return <h1>{t('heading')}</h1>;
+}
 ```
 
-#### 2. Install Dependencies
+#### Client Components
+If your component uses React hooks (e.g., `useState`), define it with `"use client"` and import from `next-intl`:
 
+```tsx
+"use client";
+
+import { useTranslations } from 'next-intl';
+
+export default function InteractiveButton() {
+  const t = useTranslations('Home');
+  return <button onClick={() => alert('Clicked!')}>{t('heading')}</button>;
+}
+```
+
+---
+
+### 3. Navigation Helpers
+
+When navigating between routes, always use the locale-aware navigation helpers imported from [`src/i18n/navigation.ts`](src/i18n/navigation.ts) instead of standard `next/link` or `next/navigation`:
+
+```tsx
+import { Link } from '../../i18n/navigation';
+
+// Will automatically resolve to /en/about or /hi/about based on active locale
+<Link href="/about">About Us</Link>
+```
+
+For programmatic router navigation:
+```typescript
+import { useRouter, usePathname } from '../../i18n/navigation';
+
+const router = useRouter();
+const pathname = usePathname();
+
+// Switch active locale on current page
+router.replace(pathname, { locale: 'hi' });
+```
+
+---
+
+### 4. Theme Configuration & Dual Theme Support
+
+The starter kit uses `next-themes` combined with Tailwind CSS v4's class-based custom variants to provide a responsive and flash-free theme experience.
+
+#### Customizing Colors
+
+**Preferred Method**
+
+Tailwind v4 is configured via CSS custom properties in [`src/app/[locale]/globals.css`](src/app/[locale]/globals.css). To adjust the default light and dark theme background or text colors, edit the root variables:
+
+```css
+:root {
+  --background: #ffffff; /* Light theme background */
+  --foreground: #121212; /* Light theme text */
+}
+
+.dark {
+  --background: #0a0a0a; /* Dark theme background */
+  --foreground: #f4f4f5; /* Dark theme text */
+}
+```
+
+#### Using Theme Classes
+To create element styles that adapt automatically to the user's selected theme, use semantic utility tokens instead of inline `dark:` utilities:
+
+```tsx
+<div className="bg-background-secondary text-foreground-primary border border-border-default">
+  This card automatically transitions colors across light and dark themes.
+</div>
+```
+
+---
+
+### 5. Smooth Scrolling (Lenis)
+
+The starter repository integrates the `lenis` library to provide smooth, high-performance inertial scrolling across all browsers.
+
+#### Customizing Lenis Options
+To configure scroll parameters (e.g., dampening velocity, custom scroll durations, or scroll directions), update the parameters passed to the `ReactLenis` component in [`lenis-provider.tsx`](src/components/providers/lenis-provider.tsx):
+
+```tsx
+<ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
+  {children}
+</ReactLenis>
+```
+
+To access the active Lenis instance or bind custom scroll animations programmatically in your page components, use the `useLenis` hook:
+
+```typescript
+import { useLenis } from 'lenis/react';
+
+const lenis = useLenis(({ scroll, limit, velocity, direction }) => {
+  // Bind your scroll logic or animation timelines here
+});
+```
+
+---
+
+## ⚡ Development and Deployment
+
+### Getting Started
+
+Install the project dependencies:
 ```bash
 npm install
-# or
-yarn install
-# or
-pnpm install
 ```
 
-#### 3. Configure Environment Variables(.env.example)
-
-Create a `.env` file in the root directory:
-
-```env
-# Add your environment variables here
-API_KEY=your_api_key
-DATABASE_URL=your_database_url
-```
-
-#### 4. Run the Development Server
-
+Start the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
 
-#### 5. Open your Browser
+Open [http://localhost:3000](http://localhost:3000) to view it. The application will automatically detect your browser's language preferences and route you to `/hi` for Hindi or `/en` for English (the default locale).
 
-Navigate to [http://localhost:3000](http://localhost:3000) to see the application.
+### Building for Production (Static Export)
 
-For detailed setup instructions, please refer to our [Installation Guide](./docs/INSTALL_GUIDE.md) (if you have one).
+Compile and export the project into static HTML/CSS/JS assets for hosting on GitHub Pages:
 
----
+```bash
+npm run build
+```
 
-## 📱 App Screenshots
-
-TODO: Add screenshots showcasing your application
-
-|  |  |  |
-|---|---|---|
-| Screenshot 1 | Screenshot 2 | Screenshot 3 |
+This generates an optimized static export in the `./out` directory, fully configured for client-side rendering and hosting on GitHub Pages.
 
 ---
 
-## 🙌 Contributing
+## ⚙️ Initial Project Setup Checklist
 
-⭐ Don't forget to star this repository if you find it useful! ⭐
+When bootstrapping a new project from this starter repository, complete the following `TODO` setup checklist to align the repository with your project's branding, metadata, AI agent guidelines, and hosting configurations:
 
-Thank you for considering contributing to this project! Contributions are highly appreciated and welcomed. To ensure smooth collaboration, please refer to our [Contribution Guidelines](./CONTRIBUTING.md).
+### 1. Project Identity & Header Details
+
+- **Project Title & Logo ([`README.md`](README.md))**: Update the main project header logo (`public/brand/icons/todo-project-logo.svg`), title `<h1>TODO: Project Name</h1>`, project description, feature list, and tech stack.
+- **AI Agent Context ([`AGENTS.md`](AGENTS.md))**: Replace `# TODO: Project Title` and add project-specific directives and rules for AI coding agents.
+- **LLM Manifest ([`public/llms.txt`](public/llms.txt))**: Update `# TODO: Project Title` in the root LLM crawler policy.
+- **Community & Social Links ([`Contributors.md`](Contributors.md))**: Replace the `[TODO Channel](TODO)` placeholder with your project's Discord, Telegram, or chat channel link.
+
+### 2. Domain Names & Search Engine Crawlers
+
+- **Sitemap Generator ([`src/app/sitemap.ts`](src/app/sitemap.ts))**: Replace the default fallback domain `https://project.aossie.org` with your project's production domain in the source code or set the `NEXT_PUBLIC_SITE_URL` environment variable at build time (e.g., in `.github/workflows/nextjs.yml` or build pipeline settings).
+- **Search Crawler Rules ([`public/robots.txt`](public/robots.txt))**: Replace the sitemap URL placeholder domain `TODO 'project.aossie.org'` with your actual production domain.
+
+### 3. Branding Guidelines & Assets
+
+- **Logo & Favicons ([`public/brand/icons/`](public/brand/icons/))**: Replace `aossie_logo.svg` and `favicon.ico` with your organization's custom logos.
+- **Brand Documentation ([`public/brand/Brand.md`](public/brand/Brand.md))**: Document your custom color hex codes, typography selections, and asset paths here to guide future developers and AI coding agents.
+
+### 4. SEO & i18n Localization Metadata
+
+- **Schema.org JSON-LD ([`src/app/[locale]/page.tsx`](src/app/[locale]/page.tsx))**: Locate the `jsonLd` object inside the `Home` component. Update the `publisher.name`, `publisher.url`, and `publisher.logo` fields from `TODO` placeholders to your project metadata.
+- **Translation Catalogs ([`src/messages/en.json`](src/messages/en.json), [`src/messages/hi.json`](src/messages/hi.json))**: Update the `heading`, `metaTitle`, and `metaDescription` keys with your project's localized titles and descriptions.
+
+### 5. Mobile & AI Platform Configurations
+
+- **Android App Links ([`public/.well-known/assetlinks.json`](public/.well-known/assetlinks.json))**: Update the package name `TODO:org.aossie.starter` and insert your Android application certificate SHA-256 fingerprint (`TODO:...`).
+- **AI Agent Plugins ([`public/.well-known/ai-plugin.json`](public/.well-known/ai-plugin.json))**: Replace all `TODO` placeholders for `name_for_human`, `name_for_model`, `description_for_human`, `description_for_model`, host URLs, contact emails, and legal info links.
+
 
 ---
 
-## ✨ Maintainers
+## 🤝 Contributing
 
-TODO: Add maintainer information
+We welcome contributions of all kinds! To contribute:
 
-- [Maintainer Name](https://github.com/username)
-- [Maintainer Name](https://github.com/username)
+1. Fork the repository and create your feature branch (`git checkout -b feature/AmazingFeature`).
+2. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+3. Ensure code quality:
+   - `npm run lint`
+   - `npm run build`
+4. Push your branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request for review.
 
----
-
-## 📍 License
-
-This project is licensed under the GNU General Public License v3.0.
-See the [LICENSE](LICENSE) file for details.
-
----
-
-## 💪 Thanks To All Contributors
-
-Thanks a lot for spending your time helping TODO grow. Keep rocking 🥂
-
-[![Contributors](https://contrib.rocks/image?repo=AOSSIE-Org/TODO)](https://github.com/AOSSIE-Org/TODO/graphs/contributors)
-
-© 2025 AOSSIE 
+© 2026 AOSSIE. Released under the Apache 2.0 / Open Source License.
