@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
 
 /* Configure class-based dark mode selector in Tailwind CSS v4 */
@@ -36,7 +35,7 @@
   --color-brand-subheading: var(--brand-subheading);
   --color-brand-surface: var(--brand-surface);
 
-  --font-sans: "Inter Display", "Inter", var(--font-inter), var(--font-devanagari), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Inter Display", "Inter", var(--font-inter), var(--font-devanagari), ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
 }
 
 /* --- LIGHT MODE (Default) --- */
@@ -49,7 +48,7 @@
   --foreground-muted: #6b7280;
   
   --nav-text: #353535;
-  --nav-text-hover: #00B643;
+  --nav-text-hover: #00843D;
 
   --border: #e5e7eb;
   
@@ -59,10 +58,10 @@
   --brand-subheading: #00843D;
   --brand-surface: rgba(0, 182, 67, 0.08);
 
-  --button-primary-bg: #00B643;
+  --button-primary-bg: #00843D;
   --button-primary-text: #ffffff;
-  --button-primary-border: #00B643;
-  --button-primary-hover-bg: #009B39;
+  --button-primary-border: #00843D;
+  --button-primary-hover-bg: #006e33;
 
   --card-bg: rgba(255, 255, 255, 0.85);
   --card-border: #e2e2e7;

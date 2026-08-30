@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 
 export default function Hero() {
   const t = useTranslations("Hero");
+  const shouldReduceMotion = useReducedMotion();
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -51,7 +52,6 @@ export default function Hero() {
           width={731}
           height={725}
           className="w-full h-auto object-contain translate-x-[2%] opacity-95 dark:opacity-85"
-          priority
         />
       </motion.div>
 
@@ -154,8 +154,8 @@ export default function Hero() {
 
               {/* Mobile Phone Mockup */}
               <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                animate={shouldReduceMotion ? { y: 0 } : { y: [0, -6, 0] }}
+                transition={shouldReduceMotion ? { duration: 0 } : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
                 className="relative z-10 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[360px] transform-gpu"
               >
                 <Image
@@ -318,8 +318,8 @@ export default function Hero() {
             className="hidden lg:flex lg:col-span-5 relative items-center justify-end"
           >
             <motion.div
-              animate={{ y: [0, -7, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              animate={shouldReduceMotion ? { y: 0 } : { y: [0, -7, 0] }}
+              transition={shouldReduceMotion ? { duration: 0 } : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="relative w-full max-w-[420px] xl:max-w-[460px] 2xl:max-w-[500px] transform-gpu"
             >
               <Image

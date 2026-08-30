@@ -44,6 +44,7 @@ export default async function Home({
       <main className="flex-1">
         <Hero />
         <InnovationSection />
+        <div id="download" />
       </main>
     </div>
   );

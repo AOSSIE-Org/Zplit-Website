@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useState, useRef, useEffect, useMemo, useCallback } from "react";
-import { motion, useAnimation, AnimatePresence, useMotionValue, useMotionTemplate, MotionValue } from "framer-motion";
+import { motion, useAnimation, AnimatePresence, useMotionValue, useMotionTemplate } from "framer-motion";
+import type { MotionValue } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 // --- Authentic SVG Icons for Zplit Tech Stack ---
 
@@ -408,7 +410,7 @@ const LegoBlock = React.memo(({
   hideStuds = false,
   studYOffset = 12,
 }: LegoBlockProps) => {
-  const topDarkenEnd = 100;
+  const topDarkenEnd = 80;
   const topShadow = "inset 0px 0px 4px rgba(0,0,0,0.28)";
   const faceShadow = "inset 0px 2px 6px rgba(255,255,255,0.45)";
 
@@ -695,6 +697,7 @@ const ModuleBlock = React.memo(({
   mouseX,
   mouseY,
   onAnimationComplete,
+  isEquipped = false,
 }: {
   module: TechModule;
   hiddenStuds?: number[];
@@ -703,8 +706,16 @@ const ModuleBlock = React.memo(({
   startRect?: DOMRect | null;
   mouseX: MotionValue<number>;
   mouseY: MotionValue<number>;
-  onAnimationComplete?: () => void;
+  onAnimationComplete?: (id: string) => void;
+  isEquipped?: boolean;
 }) => {
+  const t = useTranslations("TechStack");
+  const moduleName = t(`modules.${module.id}.name`);
+  const moduleDesc = t(`modules.${module.id}.desc`);
+  const actionLabel = isEquipped
+    ? t("actions.remove", { name: moduleName })
+    : t("actions.equip", { name: moduleName });
+
   const widthPx = module.studs * GRID_CONSTANTS.STUD_WIDTH;
   const isCompact = module.studs <= 2;
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -734,17 +745,17 @@ const ModuleBlock = React.memo(({
         }
       );
 
-      animation.onfinish = () => onAnimationComplete?.();
+      animation.onfinish = () => onAnimationComplete?.(module.id);
       return () => animation.cancel();
     }
-  }, [isAnimating, startRect, onAnimationComplete]);
+  }, [isAnimating, startRect, onAnimationComplete, module.id]);
 
   return (
     <div ref={wrapperRef} className="z-40 relative lego-block-wrapper transform-gpu will-change-transform" style={{ width: widthPx }}>
       <button
         type="button"
         onClick={onClick}
-        aria-label={`Equip ${module.name}`}
+        aria-label={actionLabel}
         className="cursor-pointer w-full shrink-0 touch-none group relative focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary rounded-lg hover:-translate-y-1.5 active:scale-95 transition-all duration-200 text-left"
       >
         <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors z-30 rounded-lg pointer-events-none" />
@@ -768,9 +779,9 @@ const ModuleBlock = React.memo(({
                 </div>
                 <div className="min-w-0">
                   <h4 className="font-sans font-bold text-white text-[13px] leading-tight tracking-wide truncate drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
-                    {module.name}
+                    {moduleName}
                   </h4>
-                  <p className="text-[10px] text-white/80 leading-none truncate mt-0.5">{module.desc}</p>
+                  <p className="text-[10px] text-white/80 leading-none truncate mt-0.5">{moduleDesc}</p>
                 </div>
               </>
             ) : (
@@ -780,9 +791,9 @@ const ModuleBlock = React.memo(({
                 </div>
                 <div className="min-w-0">
                   <h4 className="font-sans font-bold text-white text-[15px] leading-tight tracking-wide truncate drop-shadow-[0_1px_1px_rgba(0,0,0,0.5)]">
-                    {module.name}
+                    {moduleName}
                   </h4>
-                  <p className="text-[11px] text-white/80 leading-none truncate mt-0.5">{module.desc}</p>
+                  <p className="text-[11px] text-white/80 leading-none truncate mt-0.5">{moduleDesc}</p>
                 </div>
               </>
             )}
@@ -803,16 +814,17 @@ export default function LegoTechStackBuilder({
   modules = ALL_TECH_MODULES,
   className = "",
 }: LegoTechStackBuilderProps) {
+  const t = useTranslations("TechStack");
   const [equippedIds, setEquippedIds] = useState<string[]>([]);
   const [animatingBlocks, setAnimatingBlocks] = useState<Record<string, DOMRect>>({});
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", "Frontend", "Storage", "AI/ML", "Visualization", "Future: Web3", "Security"];
+  const categories = ["All", "Frontend", "Storage", "AI/ML", "Visualization", "Future: Web3", "Security"] as const;
 
   const controls = useAnimation();
   const mouseX = useMotionValue(50);
   const mouseY = useMotionValue(50);
-  const timersRef = useRef<NodeJS.Timeout[]>([]);
+  const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
   const isPointerTicking = useRef(false);
 
   // Clean up any running timers on unmount
@@ -838,6 +850,15 @@ export default function LegoTechStackBuilder({
       isPointerTicking.current = false;
     });
   }, [mouseX, mouseY]);
+
+  const handleAnimationComplete = useCallback((id: string) => {
+    setAnimatingBlocks((prev) => {
+      if (!prev[id]) return prev;
+      const next = { ...prev };
+      delete next[id];
+      return next;
+    });
+  }, []);
 
   const handleToggleEquip = useCallback((id: string, e: React.MouseEvent) => {
     if (animatingBlocks[id]) return;
@@ -890,9 +911,21 @@ export default function LegoTechStackBuilder({
     setAnimatingBlocks({});
   }, []);
 
-  const equippedModules = equippedIds.map((id) => modules.find((m) => m.id === id)!).filter(Boolean);
-  const unequippedModules = modules.filter(
-    (m) => !equippedIds.includes(m.id) && (selectedCategory === "All" || m.category === selectedCategory)
+  const moduleMap = useMemo(() => new Map(modules.map((m) => [m.id, m])), [modules]);
+  const equippedModules = useMemo(
+    () =>
+      equippedIds
+        .map((id) => moduleMap.get(id))
+        .filter((m): m is TechModule => m !== undefined),
+    [equippedIds, moduleMap]
+  );
+
+  const unequippedModules = useMemo(
+    () =>
+      modules.filter(
+        (m) => !equippedIds.includes(m.id) && (selectedCategory === "All" || m.category === selectedCategory)
+      ),
+    [modules, equippedIds, selectedCategory]
   );
 
   // Compute 2D Grid
@@ -931,12 +964,35 @@ export default function LegoTechStackBuilder({
     return { grid: calculatedGrid, positionedModules: positioned };
   }, [equippedModules]);
 
-  const hiddenServerStuds: number[] = [];
-  if (grid[0]) {
-    grid[0].forEach((occupantId, idx) => {
-      if (occupantId && !animatingBlocks[occupantId]) hiddenServerStuds.push(idx);
+  const hiddenServerStuds = useMemo(() => {
+    const studs: number[] = [];
+    if (grid[0]) {
+      grid[0].forEach((occupantId, idx) => {
+        if (occupantId && !animatingBlocks[occupantId]) studs.push(idx);
+      });
+    }
+    return studs;
+  }, [grid, animatingBlocks]);
+
+  const positionedModulesWithStuds = useMemo(() => {
+    return positionedModules.map(({ module, rowIndex, colIndex }) => {
+      const hiddenLocalStuds: number[] = [];
+      if (grid[rowIndex + 1]) {
+        for (let i = 0; i < module.studs; i++) {
+          const occupantId = grid[rowIndex + 1][colIndex + i];
+          if (occupantId && !animatingBlocks[occupantId]) {
+            hiddenLocalStuds.push(i);
+          }
+        }
+      }
+      return {
+        module,
+        rowIndex,
+        colIndex,
+        hiddenLocalStuds,
+      };
     });
-  }
+  }, [positionedModules, grid, animatingBlocks]);
 
   return (
     <div
@@ -960,7 +1016,7 @@ export default function LegoTechStackBuilder({
                       : "text-foreground-muted hover:text-foreground-primary hover:bg-background-secondary"
                   }`}
                 >
-                  {cat}
+                  {t(`categories.${cat}`)}
                 </button>
               ))}
             </div>
@@ -972,7 +1028,7 @@ export default function LegoTechStackBuilder({
                   onClick={handleEquipAll}
                   className="text-xs font-semibold px-3 py-1.5 rounded-lg text-brand-heading hover:bg-brand-surface transition-colors cursor-pointer"
                 >
-                  Equip All ({modules.length})
+                  {t("controls.equipAll", { count: modules.length })}
                 </button>
               ) : (
                 <button
@@ -980,7 +1036,7 @@ export default function LegoTechStackBuilder({
                   onClick={handleReset}
                   className="text-xs font-semibold px-3 py-1.5 rounded-lg text-foreground-muted hover:text-foreground-primary hover:bg-background-secondary transition-colors cursor-pointer"
                 >
-                  Reset
+                  {t("controls.reset")}
                 </button>
               )}
             </div>
@@ -993,9 +1049,13 @@ export default function LegoTechStackBuilder({
                 <div className="w-11 h-11 rounded-full bg-brand-surface flex items-center justify-center text-brand-primary mb-2">
                   <IconZplit size={24} />
                 </div>
-                <p className="text-sm font-semibold text-foreground-primary">All {selectedCategory !== "All" ? selectedCategory : ""} modules equipped!</p>
+                <p className="text-sm font-semibold text-foreground-primary">
+                  {selectedCategory !== "All"
+                    ? t("empty.allEquipped", { category: t(`categories.${selectedCategory}`) })
+                    : t("empty.allEquippedGeneric")}
+                </p>
                 <p className="text-xs text-foreground-muted mt-0.5">
-                  Click on stacked blocks on the right to remove or switch categories above.
+                  {t("empty.hint")}
                 </p>
               </div>
             ) : (
@@ -1005,17 +1065,12 @@ export default function LegoTechStackBuilder({
                   <ModuleBlock
                     key={module.id}
                     module={module}
+                    isEquipped={false}
                     mouseX={mouseX}
                     mouseY={mouseY}
                     isAnimating={!!startRect}
                     startRect={startRect || null}
-                    onAnimationComplete={() => {
-                      setAnimatingBlocks((prev) => {
-                        const next = { ...prev };
-                        delete next[module.id];
-                        return next;
-                      });
-                    }}
+                    onAnimationComplete={handleAnimationComplete}
                     onClick={(e) => handleToggleEquip(module.id, e)}
                   />
                 );
@@ -1033,17 +1088,7 @@ export default function LegoTechStackBuilder({
                 {/* Stacked Equipped Modules Growing Upward with Smooth Drop Animations */}
                 <div className="absolute left-0 w-full h-0 z-20" style={{ bottom: "calc(100% - 14px)" }}>
                   <AnimatePresence>
-                    {positionedModules.map(({ module, rowIndex, colIndex }) => {
-                      const hiddenLocalStuds: number[] = [];
-                      if (grid[rowIndex + 1]) {
-                        for (let i = 0; i < module.studs; i++) {
-                          const occupantId = grid[rowIndex + 1][colIndex + i];
-                          if (occupantId && !animatingBlocks[occupantId]) {
-                            hiddenLocalStuds.push(i);
-                          }
-                        }
-                      }
-
+                    {positionedModulesWithStuds.map(({ module, rowIndex, colIndex, hiddenLocalStuds }) => {
                       const startRect = animatingBlocks[module.id];
 
                       return (
@@ -1062,18 +1107,13 @@ export default function LegoTechStackBuilder({
                         >
                           <ModuleBlock
                             module={module}
+                            isEquipped={true}
                             hiddenStuds={hiddenLocalStuds}
                             mouseX={mouseX}
                             mouseY={mouseY}
                             isAnimating={!!startRect}
                             startRect={startRect || null}
-                            onAnimationComplete={() => {
-                              setAnimatingBlocks((prev) => {
-                                const next = { ...prev };
-                                delete next[module.id];
-                                return next;
-                              });
-                            }}
+                            onAnimationComplete={handleAnimationComplete}
                             onClick={(e) => handleToggleEquip(module.id, e)}
                           />
                         </motion.div>
@@ -1103,19 +1143,19 @@ export default function LegoTechStackBuilder({
                       </div>
                       <div className="text-white drop-shadow-md">
                         <h3 className="font-sans font-bold text-[17px] tracking-wide truncate drop-shadow-md">
-                          Zplit app
+                          {t("base.title")}
                         </h3>
                         <p className="font-mono text-[10px] font-bold text-green-100/90 tracking-[0.2em] uppercase mt-1 drop-shadow-xs">
                           {equippedModules.length === 0
-                            ? "Select technologies"
-                            : `Level: ${equippedModules.length * 10}XP`}
+                            ? t("base.selectTech")
+                            : t("base.level", { level: equippedModules.length * 10 })}
                         </p>
                       </div>
                     </div>
 
                     <div className="text-right">
                       <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase bg-white/20 text-white shadow-xs">
-                        Base
+                        {t("base.badge")}
                       </span>
                     </div>
                   </div>
@@ -1132,7 +1172,7 @@ export default function LegoTechStackBuilder({
                 onClick={handleEquipAll}
                 className="text-xs font-semibold text-foreground-muted hover:text-brand-primary transition-colors uppercase tracking-widest cursor-pointer"
               >
-                Show me all at once
+                {t("controls.showAll")}
               </button>
             )}
 
@@ -1142,7 +1182,7 @@ export default function LegoTechStackBuilder({
                 onClick={handleReset}
                 className="text-xs font-semibold text-foreground-muted hover:text-foreground-primary transition-colors uppercase tracking-widest cursor-pointer"
               >
-                Reset
+                {t("controls.reset")}
               </button>
             )}
           </div>

@@ -30,7 +30,7 @@ export default function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label={t("toggleTheme")}
-      className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-border-default bg-transparent hover:bg-background-secondary transition-all duration-150 active:scale-95 focus:outline-hidden cursor-pointer"
+      className="flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-border-default bg-transparent hover:bg-background-secondary transition-all duration-150 active:scale-95 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-primary cursor-pointer"
     >
       {!isDark ? (
         /* In light mode, show green crescent moon to switch to dark */

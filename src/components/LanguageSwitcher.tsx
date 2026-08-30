@@ -13,13 +13,30 @@ export default function LanguageSwitcher() {
   const [isOpen, setIsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const optionsRef = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const selectedIndex = languages.findIndex((lang) => lang.code === locale);
+  const [focusedIndex, setFocusedIndex] = useState(selectedIndex >= 0 ? selectedIndex : 0);
 
   const currentLanguage = languages.find((lang) => lang.code === locale) || languages[0];
+
+  useEffect(() => {
+    if (isOpen) {
+      const idx = selectedIndex >= 0 ? selectedIndex : 0;
+      requestAnimationFrame(() => {
+        optionsRef.current[idx]?.focus();
+      });
+    }
+  }, [isOpen, selectedIndex]);
 
   // Close dropdown on outside click or Escape key
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        triggerRef.current?.focus();
+      }
     };
 
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,6 +57,7 @@ export default function LanguageSwitcher() {
 
   const handleLanguageSelect = (newLocale: string) => {
     setIsOpen(false);
+    triggerRef.current?.focus();
     if (newLocale !== locale) {
       startTransition(() => {
         router.replace(pathname, { locale: newLocale });
@@ -47,17 +65,51 @@ export default function LanguageSwitcher() {
     }
   };
 
+  const handleListKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = (focusedIndex + 1) % languages.length;
+      setFocusedIndex(next);
+      optionsRef.current[next]?.focus();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = (focusedIndex - 1 + languages.length) % languages.length;
+      setFocusedIndex(prev);
+      optionsRef.current[prev]?.focus();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      setFocusedIndex(0);
+      optionsRef.current[0]?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      const last = languages.length - 1;
+      setFocusedIndex(last);
+      optionsRef.current[last]?.focus();
+    } else if (e.key === "Tab") {
+      setIsOpen(false);
+    }
+  };
+
+  const handleToggleOpen = () => {
+    const nextOpen = !isOpen;
+    if (nextOpen) {
+      setFocusedIndex(selectedIndex >= 0 ? selectedIndex : 0);
+    }
+    setIsOpen(nextOpen);
+  };
+
   return (
     <div ref={dropdownRef} className="relative inline-block text-left">
       {/* Pill Toggle Button */}
       <button
+        ref={triggerRef}
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggleOpen}
         disabled={isPending}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={t("selectLanguage")}
-        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border-default bg-transparent text-nav-text hover:bg-background-secondary transition-all duration-150 active:scale-95 cursor-pointer focus:outline-hidden text-xs sm:text-sm font-medium"
+        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-border-default bg-transparent text-nav-text hover:bg-background-secondary transition-all duration-150 active:scale-95 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-primary text-xs sm:text-sm font-medium"
       >
         {/* Green Globe Icon */}
         <svg
@@ -98,18 +150,23 @@ export default function LanguageSwitcher() {
         <div
           role="listbox"
           aria-label={t("selectLanguage")}
+          onKeyDown={handleListKeyDown}
           className="absolute left-0 mt-2 w-44 origin-top-left rounded-2xl border border-border-default bg-background-primary/95 backdrop-blur-lg p-1.5 shadow-xl z-50 transition-all"
         >
-          {languages.map((lang) => {
+          {languages.map((lang, index) => {
             const isSelected = lang.code === locale;
             return (
               <button
                 key={lang.code}
+                ref={(el) => {
+                  optionsRef.current[index] = el;
+                }}
                 type="button"
                 role="option"
+                tabIndex={index === focusedIndex ? 0 : -1}
                 aria-selected={isSelected}
                 onClick={() => handleLanguageSelect(lang.code)}
-                className={`w-full flex items-center justify-between px-3 py-2 text-xs sm:text-sm rounded-xl transition-all duration-150 cursor-pointer ${
+                className={`w-full flex items-center justify-between px-3 py-2 text-xs sm:text-sm rounded-xl transition-all duration-150 cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-primary ${
                   isSelected
                     ? "bg-brand-primary/10 text-brand-primary font-semibold"
                     : "text-nav-text hover:bg-background-secondary"

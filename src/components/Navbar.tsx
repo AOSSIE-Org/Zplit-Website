@@ -94,7 +94,7 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-nav-text hover:bg-background-secondary focus:outline-hidden"
+              className="p-2 rounded-lg text-nav-text hover:bg-background-secondary focus:outline-hidden focus-visible:ring-2 focus-visible:ring-brand-primary"
               aria-label={t("toggleMenu")}
               aria-expanded={mobileMenuOpen}
             >

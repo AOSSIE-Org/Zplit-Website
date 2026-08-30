@@ -79,9 +79,13 @@ export default function InnovationSection() {
           </h2>
 
           {/* Tab Switcher Pills */}
-          <div className="inline-flex p-1.5 rounded-lg bg-brand-primary/10 mt-6 sm:mt-8">
+          <div role="tablist" aria-label={t("heading")} className="inline-flex p-1.5 rounded-lg bg-brand-primary/10 mt-6 sm:mt-8">
             <button
               type="button"
+              role="tab"
+              id="tab-p2p"
+              aria-selected={activeTab === "p2p"}
+              aria-controls="tabpanel-p2p"
               onClick={() => setActiveTab("p2p")}
               className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 activeTab === "p2p"
@@ -93,6 +97,10 @@ export default function InnovationSection() {
             </button>
             <button
               type="button"
+              role="tab"
+              id="tab-techStack"
+              aria-selected={activeTab === "techStack"}
+              aria-controls="tabpanel-techStack"
               onClick={() => setActiveTab("techStack")}
               className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
                 activeTab === "techStack"
@@ -111,6 +119,9 @@ export default function InnovationSection() {
             {activeTab === "techStack" ? (
               <motion.div
                 key="techStack"
+                role="tabpanel"
+                id="tabpanel-techStack"
+                aria-labelledby="tab-techStack"
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -14 }}
@@ -122,6 +133,9 @@ export default function InnovationSection() {
             ) : (
               <motion.div
                 key="p2p"
+                role="tabpanel"
+                id="tabpanel-p2p"
+                aria-labelledby="tab-p2p"
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -14 }}
@@ -131,7 +145,7 @@ export default function InnovationSection() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                   {p2pMethods.map((method, idx) => (
                     <motion.div
-                      key={method.title}
+                      key={method.key}
                       initial={{ opacity: 0, y: 18 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, margin: "-30px" }}

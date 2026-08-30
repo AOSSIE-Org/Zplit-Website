@@ -88,6 +88,87 @@
   },
   "ThemeToggle": {
     "toggleTheme": "Toggle theme"
+  },
+  "TechStack": {
+    "categories": {
+      "All": "All",
+      "Frontend": "Frontend",
+      "Storage": "Storage",
+      "AI/ML": "AI/ML",
+      "Visualization": "Visualization",
+      "Future: Web3": "Future: Web3",
+      "Security": "Security"
+    },
+    "controls": {
+      "equipAll": "Equip All ({count})",
+      "reset": "Reset",
+      "showAll": "Show me all at once"
+    },
+    "actions": {
+      "equip": "Equip {name}",
+      "remove": "Remove {name}"
+    },
+    "empty": {
+      "allEquipped": "All {category} modules equipped!",
+      "allEquippedGeneric": "All modules equipped!",
+      "hint": "Click on stacked blocks on the right to remove or switch categories above."
+    },
+    "base": {
+      "title": "Zplit app",
+      "selectTech": "Select technologies",
+      "level": "Level: {level}XP",
+      "badge": "Base"
+    },
+    "modules": {
+      "flutter": {
+        "name": "Flutter",
+        "desc": "Android, iOS, Web"
+      },
+      "riverpod": {
+        "name": "Riverpod",
+        "desc": "State Management"
+      },
+      "hive-drift": {
+        "name": "Hive / Drift",
+        "desc": "Local DB Storage"
+      },
+      "encrypted-storage": {
+        "name": "Encrypted Storage",
+        "desc": "KeyStore Vault"
+      },
+      "mlkit-ocr": {
+        "name": "ML Kit OCR",
+        "desc": "Receipt Scanner"
+      },
+      "tflite": {
+        "name": "TensorFlow Lite",
+        "desc": "Edge Neural AI"
+      },
+      "flchart": {
+        "name": "fl_chart",
+        "desc": "Financial Charts"
+      },
+      "realtime-analytics": {
+        "name": "Real-time Analytics",
+        "desc": "Live Insights"
+      },
+      "usdc-settlement": {
+        "name": "USDC / DAI",
+        "desc": "Settlements"
+      },
+      "smart-contracts": {
+        "name": "Smart Contracts",
+        "desc": "Future Web3"
+      },
+      "e2e-encryption": {
+        "name": "E2E Encryption",
+        "desc": "AES-256 GCM"
+      },
+      "zk-sync": {
+        "name": "Zero-Knowledge Sync",
+        "desc": "Private Mesh"
+      }
+    }
   }
 }
 

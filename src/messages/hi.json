@@ -88,6 +88,87 @@
   },
   "ThemeToggle": {
     "toggleTheme": "थीम बदलें"
+  },
+  "TechStack": {
+    "categories": {
+      "All": "सभी",
+      "Frontend": "फ़्रंटएंड",
+      "Storage": "स्टोरेज",
+      "AI/ML": "एआई/एमएल",
+      "Visualization": "विज़ुअलाइज़ेशन",
+      "Future: Web3": "भविष्य: वेब3",
+      "Security": "सुरक्षा"
+    },
+    "controls": {
+      "equipAll": "सभी जोड़ें ({count})",
+      "reset": "रीसेट करें",
+      "showAll": "सभी एक साथ दिखाएं"
+    },
+    "actions": {
+      "equip": "{name} जोड़ें",
+      "remove": "{name} हटाएं"
+    },
+    "empty": {
+      "allEquipped": "सभी {category} मॉड्यूल जोड़ दिए गए हैं!",
+      "allEquippedGeneric": "सभी मॉड्यूल जोड़ दिए गए हैं!",
+      "hint": "हटाने के लिए दाईं ओर स्टैक किए गए ब्लॉक पर क्लिक करें या ऊपर श्रेणियां बदलें।"
+    },
+    "base": {
+      "title": "ज़प्लिट ऐप",
+      "selectTech": "तकनीकें चुनें",
+      "level": "स्तर: {level}XP",
+      "badge": "बेस"
+    },
+    "modules": {
+      "flutter": {
+        "name": "Flutter",
+        "desc": "Android, iOS, Web"
+      },
+      "riverpod": {
+        "name": "Riverpod",
+        "desc": "स्टेट मैनेजमेंट"
+      },
+      "hive-drift": {
+        "name": "Hive / Drift",
+        "desc": "लोकल डेटाबेस स्टोरेज"
+      },
+      "encrypted-storage": {
+        "name": "Encrypted Storage",
+        "desc": "कीस्टोर वॉल्ट"
+      },
+      "mlkit-ocr": {
+        "name": "ML Kit OCR",
+        "desc": "रसीद स्कैनर"
+      },
+      "tflite": {
+        "name": "TensorFlow Lite",
+        "desc": "एज न्यूरल एआई"
+      },
+      "flchart": {
+        "name": "fl_chart",
+        "desc": "वित्तीय चार्ट्स"
+      },
+      "realtime-analytics": {
+        "name": "Real-time Analytics",
+        "desc": "लाइव इनसाइट्स"
+      },
+      "usdc-settlement": {
+        "name": "USDC / DAI",
+        "desc": "सेटलमेंट्स"
+      },
+      "smart-contracts": {
+        "name": "Smart Contracts",
+        "desc": "भविष्य वेब3"
+      },
+      "e2e-encryption": {
+        "name": "E2E Encryption",
+        "desc": "AES-256 GCM"
+      },
+      "zk-sync": {
+        "name": "Zero-Knowledge Sync",
+        "desc": "प्राइवेट मेश"
+      }
+    }
   }
 }
 
