@@ -12,6 +12,8 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz"],
 });
 
 const devanagari = Noto_Sans_Devanagari({
