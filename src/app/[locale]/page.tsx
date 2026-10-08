@@ -1,7 +1,7 @@
-import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
-import ThemeToggle from "@/components/ThemeToggle";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import InnovationSection from "@/components/InnovationSection";
 
 export default async function Home({
   params,
@@ -31,7 +31,7 @@ export default async function Home({
   };
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-background-primary text-foreground-primary font-sans transition-colors duration-200">
+    <div className="flex min-h-screen flex-col bg-background-primary text-foreground-primary font-sans transition-colors duration-200">
       {/* Schema.org JSON-LD Structured Data */}
       <script
         id="schema-jsonld"
@@ -39,25 +39,12 @@ export default async function Home({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="flex w-full max-w-md flex-col items-center justify-center p-8 bg-background-secondary rounded-2xl border border-border-default shadow-card gap-6">
+      <Navbar />
 
-        <Image
-          src="/brand/icons/zplit_logo.svg"
-          alt="Zplit Logo"
-          width={80}
-          height={80}
-          priority
-          style={{ width: "auto", height: "auto" }}
-        />
-
-        <h1 className="text-2xl font-bold tracking-tight text-foreground-secondary text-center">
-          {t("heading")}
-        </h1>
-        
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full justify-center border-t border-border-default pt-6">
-          <LanguageSwitcher />
-          <ThemeToggle />
-        </div>
+      <main className="flex-1">
+        <Hero />
+        <InnovationSection />
+        <div id="download" />
       </main>
     </div>
   );

@@ -1,4 +1,72 @@
 {
+  "Navigation": {
+    "brandName": "Zplit",
+    "innovation": "Innovation",
+    "features": "Features",
+    "faq": "FAQ",
+    "downloadApp": "Download app",
+    "toggleMenu": "Toggle navigation menu"
+  },
+  "Hero": {
+    "titleLine1": "Split Expenses",
+    "titleLine2": "without Servers",
+    "openSourceBadge": "Open Source",
+    "poweredBy": "Powered by",
+    "aossie": "AOSSIE",
+    "features": {
+      "item1Prefix": "First truly",
+      "item1Highlight": "Decentralized",
+      "item1Suffix": "expense-sharing app",
+      "item2Highlight": "Privacy First",
+      "item2Suffix": "with No cloud, No servers, No tracking",
+      "item3Prefix": "Your data stays on your device as Zplit is",
+      "item3Highlight": "Offline-first."
+    },
+    "badges": {
+      "mostLovedTitle": "#1 Most Loved",
+      "mostLovedSubtitle": "Open Source Finance App",
+      "contributorsTitle": "10+ Contributors",
+      "contributorsSubtitle": "Actively Working"
+    },
+    "mockupAlt": "Zplit Mobile App Interface Mockup",
+    "secureAlt": "End-to-End Secure",
+    "secureBadge": "Secure",
+    "downloadApp": "Download app"
+  },
+  "Innovation": {
+    "heading": "Checkout Innovation",
+    "subheading": "Explore the architecture powering secure, offline, peer-to-peer decentralized finance.",
+    "tabP2P": "P2P Methods",
+    "tabTechStack": "Tech Stack",
+    "p2p": {
+      "wifiDirect": {
+        "title": "WiFi Direct",
+        "badge": "Fast • Reliable",
+        "description": "High-speed sync for large data transfers between nearby devices"
+      },
+      "bluetooth": {
+        "title": "Bluetooth",
+        "badge": "Universal • Low Power",
+        "description": "Short-range sync for quick updates and expense sharing"
+      },
+      "nfc": {
+        "title": "NFC",
+        "badge": "Instant • Secure",
+        "description": "Tap-to-share group invites or expenses instantly"
+      },
+      "qrDeepLinks": {
+        "title": "QR / Deep Links",
+        "badge": "Cross-Platform",
+        "description": "Cross-device sharing via scannable codes and links"
+      }
+    },
+    "interactiveTitle": "Interactive Tech Stack Builder",
+    "interactiveDesc": "Stack the modular Lego tech blocks onto the base Zplit app to construct our client architecture.",
+    "gridTitle": "Complete Tech Stack Architecture",
+    "gridDesc": "Explore all client, storage, security, and AI subsystems powering Zplit.",
+    "modeLego": "Lego Builder",
+    "modeGrid": "Full Stack Grid"
+  },
   "Home": {
     "heading": "Zplit",
     "metaTitle": "Zplit - Decentralized expense sharing",
@@ -15,10 +83,92 @@
     "home": "Go to Home"
   },
   "LanguageSwitcher": {
-    "label": "Language"
+    "label": "Language",
+    "selectLanguage": "Select language"
   },
   "ThemeToggle": {
     "toggleTheme": "Toggle theme"
+  },
+  "TechStack": {
+    "categories": {
+      "All": "All",
+      "Frontend": "Frontend",
+      "Storage": "Storage",
+      "AI/ML": "AI/ML",
+      "Visualization": "Visualization",
+      "Future: Web3": "Future: Web3",
+      "Security": "Security"
+    },
+    "controls": {
+      "equipAll": "Equip All ({count})",
+      "reset": "Reset",
+      "showAll": "Show me all at once"
+    },
+    "actions": {
+      "equip": "Equip {name}",
+      "remove": "Remove {name}"
+    },
+    "empty": {
+      "allEquipped": "All {category} modules equipped!",
+      "allEquippedGeneric": "All modules equipped!",
+      "hint": "Click on stacked blocks on the right to remove or switch categories above."
+    },
+    "base": {
+      "title": "Zplit app",
+      "selectTech": "Select technologies",
+      "level": "Level: {level}XP",
+      "badge": "Base"
+    },
+    "modules": {
+      "flutter": {
+        "name": "Flutter",
+        "desc": "Android, iOS, Web"
+      },
+      "riverpod": {
+        "name": "Riverpod",
+        "desc": "State Management"
+      },
+      "hive-drift": {
+        "name": "Hive / Drift",
+        "desc": "Local DB Storage"
+      },
+      "encrypted-storage": {
+        "name": "Encrypted Storage",
+        "desc": "KeyStore Vault"
+      },
+      "mlkit-ocr": {
+        "name": "ML Kit OCR",
+        "desc": "Receipt Scanner"
+      },
+      "tflite": {
+        "name": "TensorFlow Lite",
+        "desc": "Edge Neural AI"
+      },
+      "flchart": {
+        "name": "fl_chart",
+        "desc": "Financial Charts"
+      },
+      "realtime-analytics": {
+        "name": "Real-time Analytics",
+        "desc": "Live Insights"
+      },
+      "usdc-settlement": {
+        "name": "USDC / DAI",
+        "desc": "Settlements"
+      },
+      "smart-contracts": {
+        "name": "Smart Contracts",
+        "desc": "Future Web3"
+      },
+      "e2e-encryption": {
+        "name": "E2E Encryption",
+        "desc": "AES-256 GCM"
+      },
+      "zk-sync": {
+        "name": "Zero-Knowledge Sync",
+        "desc": "Private Mesh"
+      }
+    }
   }
 }
 

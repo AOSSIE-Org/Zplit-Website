@@ -1,4 +1,72 @@
 {
+  "Navigation": {
+    "brandName": "ज़प्लिट",
+    "innovation": "नवाचार",
+    "features": "विशेषताएं",
+    "faq": "सामान्य प्रश्न",
+    "downloadApp": "ऐप डाउनलोड करें",
+    "toggleMenu": "नेविगेशन मेनू टॉगल करें"
+  },
+  "Hero": {
+    "titleLine1": "खर्चों का बंटवारा करें",
+    "titleLine2": "बिना किसी सर्वर के",
+    "openSourceBadge": "ओपन सोर्स",
+    "poweredBy": "द्वारा संचालित",
+    "aossie": "AOSSIE",
+    "features": {
+      "item1Prefix": "पहला सचमुच",
+      "item1Highlight": "विकेंद्रीकृत",
+      "item1Suffix": "खर्च-साझाकरण ऐप",
+      "item2Highlight": "गोपनीयता प्रथम",
+      "item2Suffix": "बिना क्लाउड, बिना सर्वर, बिना ट्रैकिंग",
+      "item3Prefix": "आपका डेटा आपके डिवाइस पर रहता है क्योंकि ज़प्लिट है",
+      "item3Highlight": "ऑफ़लाइन-प्रथम।"
+    },
+    "badges": {
+      "mostLovedTitle": "#1 सबसे पसंदीदा",
+      "mostLovedSubtitle": "ओपन सोर्स फाइनेंस ऐप",
+      "contributorsTitle": "10+ योगदानकर्ता",
+      "contributorsSubtitle": "सक्रिय रूप से कार्यरत"
+    },
+    "mockupAlt": "ज़प्लिट मोबाइल ऐप इंटरफ़ेस मॉकअप",
+    "secureAlt": "पूरी तरह से सुरक्षित",
+    "secureBadge": "सुरक्षित",
+    "downloadApp": "ऐप डाउनलोड करें"
+  },
+  "Innovation": {
+    "heading": "नवाचार देखें",
+    "subheading": "सुरक्षित, ऑफ़लाइन, पीयर-टू-पीयर विकेंद्रीकृत वित्त को शक्ति प्रदान करने वाले आर्किटेक्चर का अन्वेषण करें।",
+    "tabP2P": "पी2पी तरीके",
+    "tabTechStack": "टेक स्टैक",
+    "p2p": {
+      "wifiDirect": {
+        "title": "वाई-फ़ाई डायरेक्ट",
+        "badge": "तेज़ • विश्वसनीय",
+        "description": "आस-पास के डिवाइसों के बीच बड़े डेटा ट्रांसफर के लिए हाई-स्पीड सिंक"
+      },
+      "bluetooth": {
+        "title": "ब्लूटूथ",
+        "badge": "यूनिवर्सल • कम ऊर्जा",
+        "description": "त्वरित अपडेट और खर्च साझा करने के लिए कम दूरी का सिंक"
+      },
+      "nfc": {
+        "title": "एनएफसी",
+        "badge": "तुरंत • सुरक्षित",
+        "description": "ग्रुप आमंत्रण या खर्चों को तुरंत टैप करके साझा करें"
+      },
+      "qrDeepLinks": {
+        "title": "क्यूआर / डीप लिंक्स",
+        "badge": "क्रॉस-प्लेटफ़ॉर्म",
+        "description": "स्कैन करने योग्य कोड और लिंक के माध्यम से क्रॉस-डिवाइस साझाकरण"
+      }
+    },
+    "interactiveTitle": "इंटरएक्टिव टेक स्टैक बिल्डर",
+    "interactiveDesc": "हमारे क्लाइंट आर्किटेक्चर का निर्माण करने के लिए बेस ज़प्लिट ऐप पर मॉड्यूलर लेगो टेक ब्लॉक स्टैक करें।",
+    "gridTitle": "पूर्ण टेक स्टैक आर्किटेक्चर",
+    "gridDesc": "ज़प्लिट को संचालित करने वाले सभी क्लाइंट, स्टोरेज, सुरक्षा और एआई सबसिस्टम देखें।",
+    "modeLego": "लेगो बिल्डर",
+    "modeGrid": "फुल स्टैक ग्रिड"
+  },
   "Home": {
     "heading": "ज़प्लिट",
     "metaTitle": "ज़प्लिट - विकेंद्रीकृत खर्च साझाकरण",
@@ -15,10 +83,92 @@
     "home": "होम पेज पर जाएं"
   },
   "LanguageSwitcher": {
-    "label": "भाषा"
+    "label": "भाषा",
+    "selectLanguage": "भाषा चुनें"
   },
   "ThemeToggle": {
     "toggleTheme": "थीम बदलें"
+  },
+  "TechStack": {
+    "categories": {
+      "All": "सभी",
+      "Frontend": "फ़्रंटएंड",
+      "Storage": "स्टोरेज",
+      "AI/ML": "एआई/एमएल",
+      "Visualization": "विज़ुअलाइज़ेशन",
+      "Future: Web3": "भविष्य: वेब3",
+      "Security": "सुरक्षा"
+    },
+    "controls": {
+      "equipAll": "सभी जोड़ें ({count})",
+      "reset": "रीसेट करें",
+      "showAll": "सभी एक साथ दिखाएं"
+    },
+    "actions": {
+      "equip": "{name} जोड़ें",
+      "remove": "{name} हटाएं"
+    },
+    "empty": {
+      "allEquipped": "सभी {category} मॉड्यूल जोड़ दिए गए हैं!",
+      "allEquippedGeneric": "सभी मॉड्यूल जोड़ दिए गए हैं!",
+      "hint": "हटाने के लिए दाईं ओर स्टैक किए गए ब्लॉक पर क्लिक करें या ऊपर श्रेणियां बदलें।"
+    },
+    "base": {
+      "title": "ज़प्लिट ऐप",
+      "selectTech": "तकनीकें चुनें",
+      "level": "स्तर: {level}XP",
+      "badge": "बेस"
+    },
+    "modules": {
+      "flutter": {
+        "name": "Flutter",
+        "desc": "Android, iOS, Web"
+      },
+      "riverpod": {
+        "name": "Riverpod",
+        "desc": "स्टेट मैनेजमेंट"
+      },
+      "hive-drift": {
+        "name": "Hive / Drift",
+        "desc": "लोकल डेटाबेस स्टोरेज"
+      },
+      "encrypted-storage": {
+        "name": "Encrypted Storage",
+        "desc": "कीस्टोर वॉल्ट"
+      },
+      "mlkit-ocr": {
+        "name": "ML Kit OCR",
+        "desc": "रसीद स्कैनर"
+      },
+      "tflite": {
+        "name": "TensorFlow Lite",
+        "desc": "एज न्यूरल एआई"
+      },
+      "flchart": {
+        "name": "fl_chart",
+        "desc": "वित्तीय चार्ट्स"
+      },
+      "realtime-analytics": {
+        "name": "Real-time Analytics",
+        "desc": "लाइव इनसाइट्स"
+      },
+      "usdc-settlement": {
+        "name": "USDC / DAI",
+        "desc": "सेटलमेंट्स"
+      },
+      "smart-contracts": {
+        "name": "Smart Contracts",
+        "desc": "भविष्य वेब3"
+      },
+      "e2e-encryption": {
+        "name": "E2E Encryption",
+        "desc": "AES-256 GCM"
+      },
+      "zk-sync": {
+        "name": "Zero-Knowledge Sync",
+        "desc": "प्राइवेट मेश"
+      }
+    }
   }
 }
 
