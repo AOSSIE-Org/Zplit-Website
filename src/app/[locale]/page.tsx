@@ -2,6 +2,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import InnovationSection from "@/components/InnovationSection";
+import FeaturesShowcase from "@/components/features/FeaturesShowcase";
+import FaqSection from "@/components/FaqSection";
+import Footer from "@/components/footer/Footer";
 
 export default async function Home({
   params,
@@ -43,9 +46,12 @@ export default async function Home({
 
       <main className="flex-1">
         <Hero />
+        <FeaturesShowcase />
         <InnovationSection />
-        <div id="download" />
+        <FaqSection />
       </main>
+
+      <Footer />
     </div>
   );
 }

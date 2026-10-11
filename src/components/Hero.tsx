@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { SITE_LINKS } from "@/config/links";
 
 export default function Hero() {
   const t = useTranslations("Hero");
@@ -38,7 +39,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative pt-6 pb-4 sm:pt-8 sm:pb-6 lg:pt-10 lg:pb-8 overflow-hidden lg:overflow-visible">
+    <section className="relative pt-6 pb-14 sm:pt-8 sm:pb-16 lg:pt-10 lg:pb-8 overflow-hidden lg:overflow-visible">
       {/* Background 3-striped wavy green effect - desktop */}
       <motion.div
         initial={{ opacity: 0, scale: 0.98, x: 20 }}
@@ -94,7 +95,7 @@ export default function Hero() {
                 </span>
               </motion.h1>
 
-              {/* Powered By AOSSIE */}
+              {/* Made By AOSSIE */}
               <motion.div
                 variants={itemVariants}
                 className="flex items-center justify-center lg:justify-start gap-1.5 text-base sm:text-lg font-semibold text-brand-heading mt-3.5 sm:mt-4"
@@ -125,7 +126,9 @@ export default function Hero() {
               {/* Mobile Only: Download CTA Button */}
               <motion.div variants={itemVariants} className="flex lg:hidden justify-center mt-6 mb-2">
                 <a
-                  href="#download"
+                  href={SITE_LINKS.playStore}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={t("downloadApp")}
                   className="inline-flex items-center justify-center px-8 py-3.5 rounded-full text-base font-semibold text-white bg-brand-primary hover:bg-brand-hover active:scale-95 shadow-md shadow-brand-primary/25 transition-all duration-150"
                 >
@@ -159,10 +162,10 @@ export default function Hero() {
                 className="relative z-10 w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[360px] transform-gpu"
               >
                 <Image
-                  src="/assets/mockups/heromockup.png"
+                  src="/assets/mockups/heromockup.webp"
                   alt={t("mockupAlt")}
-                  width={420}
-                  height={1160}
+                  width={460}
+                  height={753}
                   className="w-full h-auto object-contain drop-shadow-2xl"
                   priority
                 />
@@ -323,10 +326,10 @@ export default function Hero() {
               className="relative w-full max-w-[420px] xl:max-w-[460px] 2xl:max-w-[500px] transform-gpu"
             >
               <Image
-                src="/assets/mockups/heromockup.png"
+                src="/assets/mockups/heromockup.webp"
                 alt={t("mockupAlt")}
-                width={420}
-                height={1160}
+                width={460}
+                height={753}
                 className="w-full h-auto object-contain drop-shadow-2xl transition-transform duration-300 hover:scale-[1.01]"
                 priority
               />

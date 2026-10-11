@@ -11,6 +11,8 @@ Define your project's custom color palette below:
 | Color Name | Color Sample | HEX Code | RGB Code | Role |
 | :--- | :--- | :--- | :--- | :--- |
 | **Zplit Primary Green** | 🟩 | `#00B643` | `rgb(0, 182, 67)` | Primary Project Color |
+| **Accent Bright** | 🟩 | `#4ADE80` | `rgb(74, 222, 128)` | Highlights on dark surfaces (`accent-bright`) |
+| **Accent Soft** | 🟩 | `#86EFAC` | `rgb(134, 239, 172)` | Labels / eyebrows on dark surfaces (`accent-soft`) |
 
 ---
 

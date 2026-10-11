@@ -241,6 +241,10 @@ const GRID_CONSTANTS = {
   APEX_HEIGHT: 150,
 };
 
+const STAGE_WIDTH = 390;
+/** Tall enough for every module stacked (6 rows) on top of the base block. */
+const STAGE_HEIGHT = 600;
+
 const STUD_THEMES = {
   brandGreen: {
     wall: "linear-gradient(90deg, #006124 0%, #00843d 20%, #00b643 38%, #10d456 50%, #00b643 62%, #00843d 80%, #006124 100%)",
@@ -698,6 +702,7 @@ const ModuleBlock = React.memo(({
   mouseY,
   onAnimationComplete,
   isEquipped = false,
+  parentScale = 1,
 }: {
   module: TechModule;
   hiddenStuds?: number[];
@@ -708,6 +713,8 @@ const ModuleBlock = React.memo(({
   mouseY: MotionValue<number>;
   onAnimationComplete?: (id: string) => void;
   isEquipped?: boolean;
+  /** CSS scale applied by an ancestor; screen-space deltas are divided by it. */
+  parentScale?: number;
 }) => {
   const t = useTranslations("TechStack");
   const moduleName = t(`modules.${module.id}.name`);
@@ -723,8 +730,8 @@ const ModuleBlock = React.memo(({
   useEffect(() => {
     if (isAnimating && startRect && wrapperRef.current) {
       const endRect = wrapperRef.current.getBoundingClientRect();
-      const dx = startRect.left - endRect.left;
-      const dy = startRect.top - endRect.top;
+      const dx = (startRect.left - endRect.left) / parentScale;
+      const dy = (startRect.top - endRect.top) / parentScale;
 
       const apexY = Math.min(dy, 0) - GRID_CONSTANTS.APEX_HEIGHT;
 
@@ -748,15 +755,15 @@ const ModuleBlock = React.memo(({
       animation.onfinish = () => onAnimationComplete?.(module.id);
       return () => animation.cancel();
     }
-  }, [isAnimating, startRect, onAnimationComplete, module.id]);
+  }, [isAnimating, startRect, onAnimationComplete, module.id, parentScale]);
 
   return (
-    <div ref={wrapperRef} className="z-40 relative lego-block-wrapper transform-gpu will-change-transform" style={{ width: widthPx }}>
+    <div ref={wrapperRef} className="z-40 relative shrink-0 snap-start lego-block-wrapper transform-gpu will-change-transform" style={{ width: widthPx }}>
       <button
         type="button"
         onClick={onClick}
         aria-label={actionLabel}
-        className="cursor-pointer w-full shrink-0 touch-none group relative focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary rounded-lg hover:-translate-y-1.5 active:scale-95 transition-all duration-200 text-left"
+        className="cursor-pointer w-full shrink-0 touch-manipulation group relative focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-primary rounded-lg hover:-translate-y-1.5 active:scale-95 transition-all duration-200 text-left"
       >
         <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors z-30 rounded-lg pointer-events-none" />
         <LegoBlock
@@ -822,6 +829,22 @@ export default function LegoTechStackBuilder({
   const categories = ["All", "Frontend", "Storage", "AI/ML", "Visualization", "Future: Web3", "Security"] as const;
 
   const controls = useAnimation();
+  const stageBoxRef = useRef<HTMLDivElement>(null);
+  const [stageScale, setStageScale] = useState(1);
+
+  // Scale the fixed-size stacking stage down to fit narrow (mobile) containers
+  useEffect(() => {
+    const el = stageBoxRef.current;
+    if (!el) return;
+    const update = () => {
+      const available = el.clientWidth;
+      if (available > 0) setStageScale(Math.min(1, available / STAGE_WIDTH));
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
   const mouseX = useMotionValue(50);
   const mouseY = useMotionValue(50);
   const timersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -999,18 +1022,18 @@ export default function LegoTechStackBuilder({
       onPointerMove={handlePointerMove}
       className={`w-full relative select-none font-sans flex flex-col ${className}`}
     >
-      <div className="flex flex-col lg:flex-row items-stretch justify-between gap-12 lg:gap-16 relative z-10 w-full min-h-[520px]">
+      <div className="flex flex-col lg:flex-row items-stretch justify-between gap-4 lg:gap-16 relative z-10 w-full lg:min-h-[520px]">
         {/* LEFT: Available Tech Modules with clean category segregation */}
-        <div className="flex-1 w-full max-w-[620px] flex flex-col justify-start">
+        <div className="order-2 lg:order-1 flex-1 w-full min-w-0 lg:max-w-[620px] flex flex-col justify-start">
           {/* Category Filter Segregation Tabs - Anchored at the Top */}
-          <div className="flex flex-wrap items-center justify-between w-full gap-3 mb-6">
-            <div className="flex flex-wrap items-center gap-1.5 bg-brand-primary/5 p-1 rounded-xl">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center justify-between w-full gap-3 mb-2 lg:mb-6">
+            <div className="flex flex-nowrap lg:flex-wrap items-center gap-1.5 bg-brand-primary/5 p-1 rounded-xl max-w-full overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {categories.map((cat) => (
                 <button
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+                  className={`shrink-0 whitespace-nowrap px-3 py-1.5 lg:py-1 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
                     selectedCategory === cat
                       ? "bg-brand-primary text-white shadow-xs"
                       : "text-foreground-muted hover:text-foreground-primary hover:bg-background-secondary"
@@ -1021,7 +1044,7 @@ export default function LegoTechStackBuilder({
               ))}
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="hidden lg:flex items-center gap-2">
               {equippedIds.length < modules.length ? (
                 <button
                   type="button"
@@ -1043,9 +1066,9 @@ export default function LegoTechStackBuilder({
           </div>
 
           {/* Module pool */}
-          <div className="flex flex-wrap items-center justify-start gap-4 min-h-[220px]">
+          <div className="-mx-6 sm:-mx-8 md:-mx-12 lg:mx-0 px-6 sm:px-8 md:px-12 lg:px-0 flex flex-nowrap lg:flex-wrap items-end lg:items-center justify-start gap-3 lg:gap-4 pt-5 pb-3 lg:py-0 min-h-[118px] lg:min-h-[220px] overflow-x-auto overflow-y-hidden lg:overflow-visible snap-x snap-mandatory lg:snap-none scroll-px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {unequippedModules.length === 0 ? (
-              <div className="w-full flex flex-col items-center justify-center py-10 text-center">
+              <div className="w-full shrink-0 flex flex-col items-center justify-center py-4 lg:py-10 text-center">
                 <div className="w-11 h-11 rounded-full bg-brand-surface flex items-center justify-center text-brand-primary mb-2">
                   <IconZplit size={24} />
                 </div>
@@ -1080,10 +1103,34 @@ export default function LegoTechStackBuilder({
         </div>
 
         {/* RIGHT: Stacking Base Block "Zplit app" grounded at Base */}
-        <div className="flex flex-col items-center justify-end w-full lg:w-auto mt-8 lg:mt-0 self-stretch lg:self-end">
-          <div className="scale-[0.85] sm:scale-[0.95] lg:scale-100 origin-bottom shrink-0 flex flex-col items-center justify-end">
+        <div className="order-1 lg:order-2 flex flex-col items-center justify-end w-full lg:w-auto self-stretch lg:self-end">
+          {/* Measures the available width; the stage is scaled to fit it */}
+          <div ref={stageBoxRef} className="w-full lg:w-[390px] flex justify-center">
+            <div
+              className="relative shrink-0"
+              style={{ width: STAGE_WIDTH * stageScale, height: STAGE_HEIGHT * stageScale }}
+            >
             {/* Fixed-height container: Base block NEVER translates in Y */}
-            <div className="relative w-[390px] h-[500px] flex flex-col justify-end">
+            <div
+              className="absolute left-0 top-0 flex flex-col justify-end origin-top-left"
+              style={{ width: STAGE_WIDTH, height: STAGE_HEIGHT, transform: `scale(${stageScale})` }}
+            >
+              <AnimatePresence>
+                {equippedModules.length === 0 && (
+                  <motion.div
+                    key="stage-hint"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="pointer-events-none absolute inset-x-6 top-10 bottom-40 flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-brand-primary/25 text-center"
+                  >
+                    <div className="w-11 h-11 rounded-full bg-brand-surface flex items-center justify-center text-brand-primary">
+                      <IconZplit size={22} />
+                    </div>
+                    <p className="max-w-[240px] text-sm font-medium text-foreground-muted">{t("empty.stageHint")}</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
               <motion.div animate={controls} className="relative w-full">
                 {/* Stacked Equipped Modules Growing Upward with Smooth Drop Animations */}
                 <div className="absolute left-0 w-full h-0 z-20" style={{ bottom: "calc(100% - 14px)" }}>
@@ -1108,6 +1155,7 @@ export default function LegoTechStackBuilder({
                           <ModuleBlock
                             module={module}
                             isEquipped={true}
+                            parentScale={stageScale}
                             hiddenStuds={hiddenLocalStuds}
                             mouseX={mouseX}
                             mouseY={mouseY}
@@ -1162,10 +1210,11 @@ export default function LegoTechStackBuilder({
                 </LegoBlock>
               </motion.div>
             </div>
+            </div>
           </div>
 
           {/* Action / Show me all at once / Reset Controls at Bottom */}
-          <div className="h-16 w-full flex items-center justify-center mt-6 gap-6">
+          <div className="h-12 lg:h-16 w-full flex items-center justify-center mt-2 lg:mt-6 gap-6">
             {equippedModules.length < modules.length && (
               <button
                 type="button"

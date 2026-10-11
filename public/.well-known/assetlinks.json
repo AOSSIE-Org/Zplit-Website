@@ -4,9 +4,7 @@
     "target": {
       "namespace": "android_app",
       "package_name": "org.aossie.zplit",
-      "sha256_cert_fingerprints": [
-        "14:6D:E9:83:C5:E9:9D:03:7F:10:97:DF:A6:45:12:26:1F:EE:3A:84:14:6D:E9:83:C5:E9:9D:03:7F:10:97:00"
-      ]
+      "sha256_cert_fingerprints": ["E6:78:20:38:D6:0F:6B:3F:38:C5:6D:37:03:C1:20:0B:73:ED:76:25:98:B9:C0:F0:EE:9C:05:D7:06:46:0A:C0"]
     }
   }
 ]

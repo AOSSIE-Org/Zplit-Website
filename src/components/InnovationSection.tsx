@@ -7,7 +7,7 @@ import LegoTechStackBuilder, { ALL_TECH_MODULES } from "@/components/TechStackMi
 
 export default function InnovationSection() {
   const t = useTranslations("Innovation");
-  const [activeTab, setActiveTab] = useState<"p2p" | "techStack">("p2p");
+  const [activeTab, setActiveTab] = useState<"p2p" | "techStack">("techStack");
 
   const p2pMethods = [
     {
@@ -83,21 +83,6 @@ export default function InnovationSection() {
             <button
               type="button"
               role="tab"
-              id="tab-p2p"
-              aria-selected={activeTab === "p2p"}
-              aria-controls="tabpanel-p2p"
-              onClick={() => setActiveTab("p2p")}
-              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                activeTab === "p2p"
-                  ? "bg-brand-primary text-white shadow-sm"
-                  : "text-brand-heading hover:text-brand-primary"
-              }`}
-            >
-              {t("tabP2P")}
-            </button>
-            <button
-              type="button"
-              role="tab"
               id="tab-techStack"
               aria-selected={activeTab === "techStack"}
               aria-controls="tabpanel-techStack"
@@ -109,6 +94,21 @@ export default function InnovationSection() {
               }`}
             >
               {t("tabTechStack")}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="tab-p2p"
+              aria-selected={activeTab === "p2p"}
+              aria-controls="tabpanel-p2p"
+              onClick={() => setActiveTab("p2p")}
+              className={`px-6 py-3 rounded-lg text-sm font-semibold transition-all duration-200 cursor-pointer ${
+                activeTab === "p2p"
+                  ? "bg-brand-primary text-white shadow-sm"
+                  : "text-brand-heading hover:text-brand-primary"
+              }`}
+            >
+              {t("tabP2P")}
             </button>
           </div>
         </motion.div>

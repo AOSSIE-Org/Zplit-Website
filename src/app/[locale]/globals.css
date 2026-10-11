@@ -3,6 +3,9 @@
 /* Configure class-based dark mode selector in Tailwind CSS v4 */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Viewports with enough height for roomier pinned (sticky) layouts */
+@custom-variant tall (@media (min-height: 860px));
+
 @theme {
   /* Bind Tailwind v4 variables directly to semantic CSS variables */
   --color-background-primary: var(--background);
@@ -34,6 +37,38 @@
   --color-brand-heading: var(--brand-heading);
   --color-brand-subheading: var(--brand-subheading);
   --color-brand-surface: var(--brand-surface);
+
+  /* Scroll-driven features showcase */
+  --color-showcase-from: var(--showcase-from);
+  --color-showcase-to: var(--showcase-to);
+  --color-showcase-border: var(--showcase-border);
+  --color-showcase-glow: var(--showcase-glow);
+  --color-showcase-stage: var(--showcase-stage);
+
+  /* Bright accents used on the always-dark surfaces (showcase card, footer) */
+  --color-accent-bright: #4ade80;
+  --color-accent-soft: #86efac;
+  --color-aossie-gold: #FFCD00;
+
+  /* Footer */
+  --color-footer-bg: var(--footer-bg);
+  --color-footer-surface: var(--footer-surface);
+  --color-footer-border: var(--footer-border);
+  --color-footer-text: var(--footer-text);
+  --color-footer-muted: var(--footer-muted);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-scan: scan 2.6s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes scan {
+    0%, 100% { top: 8%; }
+    50% { top: 88%; }
+  }
 
   --font-sans: "Inter Display", "Inter", var(--font-inter), var(--font-devanagari), ui-sans-serif, system-ui, -apple-system, blinkmacsystemfont, "Segoe UI", roboto, sans-serif;
 }
@@ -71,6 +106,18 @@
   --status-error-text: #dc2626;
   --status-neutral-bg: #f4f4f5;
   --status-neutral-text: #52525b;
+
+  --showcase-from: #01431f;
+  --showcase-to: #002b13;
+  --showcase-border: rgba(0, 182, 67, 0.22);
+  --showcase-glow: rgba(0, 214, 90, 0.35);
+  --showcase-stage: #0a5a2e;
+
+  --footer-bg: #04200f;
+  --footer-surface: rgba(255, 255, 255, 0.05);
+  --footer-border: rgba(255, 255, 255, 0.1);
+  --footer-text: #f1f7f3;
+  --footer-muted: rgba(226, 240, 231, 0.62);
 }
 
 /* --- DARK MODE --- */
@@ -106,8 +153,42 @@
   --status-error-text: #f87171;
   --status-neutral-bg: #27272a;
   --status-neutral-text: #a1a1aa;
+
+  --showcase-from: #0c2416;
+  --showcase-to: #070f0a;
+  --showcase-border: rgba(0, 182, 67, 0.28);
+  --showcase-glow: rgba(0, 182, 67, 0.28);
+  --showcase-stage: #0b3a1f;
+
+  --footer-bg: #050906;
+  --footer-surface: rgba(255, 255, 255, 0.04);
+  --footer-border: rgba(0, 182, 67, 0.16);
+  --footer-text: #eef5f0;
+  --footer-muted: rgba(214, 228, 219, 0.55);
 }
 
+
+/* --- DEVANAGARI TYPOGRAPHY ---
+   Wide letter-spacing breaks apart Devanagari conjuncts, so eyebrow/label
+   tracking utilities are neutralised for Hindi (unlayered, so it wins). */
+:lang(hi) [class*="tracking-["],
+:lang(hi) .tracking-wider,
+:lang(hi) .tracking-widest {
+  letter-spacing: normal;
+}
+
+/* --- NAVBAR OVER DARK SURFACES ---
+   Applied while the sticky navbar floats over the always-dark footer: re-maps the
+   semantic tokens its children use so text, borders and glass stay legible. */
+.nav-on-dark {
+  --color-background-primary: var(--footer-bg);
+  --color-background-secondary: rgba(255, 255, 255, 0.08);
+  --color-foreground-primary: var(--footer-text);
+  --color-foreground-muted: var(--footer-muted);
+  --color-nav-text: var(--footer-text);
+  --color-border-default: var(--footer-border);
+  --color-card-bg: rgba(255, 255, 255, 0.06);
+}
 
 /* --- GLOBAL STYLES --- */
 html,
