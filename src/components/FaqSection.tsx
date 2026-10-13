@@ -208,23 +208,21 @@ export default function FaqSection() {
                         </motion.span>
                       </button>
                     </h3>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          id={panelId}
-                          role="region"
-                          aria-labelledby={buttonId}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease }}
-                        >
-                          <p className="px-5 pb-5 text-[15px] leading-relaxed text-foreground-muted sm:px-6 sm:pb-6 sm:text-base">
-                            {item.a}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    <motion.div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={buttonId}
+                      aria-hidden={!isOpen}
+                      inert={!isOpen}
+                      initial={false}
+                      animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+                      transition={{ duration: 0.35, ease }}
+                      className="overflow-hidden"
+                    >
+                      <p className="px-5 pb-5 text-[15px] leading-relaxed text-foreground-muted sm:px-6 sm:pb-6 sm:text-base">
+                        {item.a}
+                      </p>
+                    </motion.div>
                   </motion.li>
                 );
               })}
