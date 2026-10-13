@@ -136,8 +136,6 @@ function SplitWordmark() {
         aria-label={`Zplit: ${t("wordmarkReveal")}`}
         onPointerEnter={(e) => e.pointerType === "mouse" && setHovered(true)}
         onPointerLeave={(e) => e.pointerType === "mouse" && setHovered(false)}
-        onFocus={() => setHovered(true)}
-        onBlur={() => setHovered(false)}
         onClick={() => setHovered((v) => !v)}
         className="relative block w-full cursor-pointer select-none rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-bright"
       >

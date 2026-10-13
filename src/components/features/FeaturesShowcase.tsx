@@ -121,6 +121,8 @@ export default function FeaturesShowcase() {
   const reduce = useReducedMotion();
   const lenis = useLenis();
   const trackRef = useRef<HTMLDivElement>(null);
+  const desktopVisualRef = useRef<HTMLDivElement>(null);
+  const isDesktopVisualInView = useInView(desktopVisualRef, { margin: "120px 0px" });
   const [active, setActive] = useState(0);
   const total = FEATURES.length;
 
@@ -291,19 +293,23 @@ export default function FeaturesShowcase() {
               </div>
 
               {/* Right: animated visual */}
-              <div className="relative col-span-7 min-h-0">
-                <AnimatePresence initial={false}>
-                  <motion.div
-                    key={FEATURES[active].key}
-                    initial={{ opacity: 0, scale: 1.04, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                    exit={{ opacity: 0, scale: 0.97, filter: "blur(6px)" }}
-                    transition={{ duration: reduce ? 0 : 0.55, ease }}
-                    className="absolute inset-0"
-                  >
-                    <ActiveVisual chip={t(`items.${FEATURES[active].key}.chip`)} />
-                  </motion.div>
-                </AnimatePresence>
+              <div ref={desktopVisualRef} className="relative col-span-7 min-h-0">
+                {isDesktopVisualInView ? (
+                  <AnimatePresence initial={false}>
+                    <motion.div
+                      key={FEATURES[active].key}
+                      initial={{ opacity: 0, scale: 1.04, filter: "blur(10px)" }}
+                      animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                      exit={{ opacity: 0, scale: 0.97, filter: "blur(6px)" }}
+                      transition={{ duration: reduce ? 0 : 0.55, ease }}
+                      className="absolute inset-0"
+                    >
+                      <ActiveVisual chip={t(`items.${FEATURES[active].key}.chip`)} />
+                    </motion.div>
+                  </AnimatePresence>
+                ) : (
+                  <div className="h-full w-full rounded-[26px] bg-showcase-stage" />
+                )}
               </div>
             </CardShell>
           </div>

@@ -58,7 +58,10 @@ export default function FaqSection() {
       aria-labelledby="faq-heading"
       className="relative bg-background-primary py-16 transition-colors duration-200 sm:py-20 lg:py-28"
     >
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+      />
 
       <div className="mx-auto grid w-full max-w-[1536px] grid-cols-1 gap-10 px-6 sm:px-8 md:px-12 lg:grid-cols-12 lg:gap-16 lg:px-16">
         {/* Intro column */}

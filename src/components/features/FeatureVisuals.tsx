@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, useInView } from "framer-motion";
 import {
   Bluetooth,
   Check,
@@ -42,9 +42,9 @@ function useTicker(length: number, interval: number) {
   return index;
 }
 
-function Stage({ children }: { children: ReactNode }) {
+function Stage({ children, ref }: { children: ReactNode; ref?: React.Ref<HTMLDivElement> }) {
   return (
-    <div className="@container relative h-full w-full overflow-hidden rounded-[26px] bg-showcase-stage isolate">
+    <div ref={ref} className="@container relative h-full w-full overflow-hidden rounded-[26px] bg-showcase-stage isolate">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_22%_18%,rgba(74,222,128,0.38),transparent_55%),radial-gradient(circle_at_85%_92%,rgba(0,182,67,0.35),transparent_50%)]" />
       <div className="absolute inset-0 -z-10 opacity-[0.14] bg-[radial-gradient(rgba(255,255,255,0.9)_1px,transparent_1px)] bg-size-[18px_18px]" />
       {/* Scale the whole composition down in narrow containers (phones) */}
@@ -660,19 +660,19 @@ export function AnalyticsVisual({ chip }: { chip: string }) {
 const CIPHER_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const CIPHER_SEED = "k9Qx+2fLzA7mR0vT4bWc8yNe";
 
-function useCipherText(length: number) {
+function useCipherText(length: number, inView = true) {
   const reduce = useReducedMotion();
   const [text, setText] = useState(CIPHER_SEED.slice(0, length));
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || !inView) return;
     const id = window.setInterval(() => {
       setText(
         Array.from({ length }, () => CIPHER_CHARS[Math.floor(Math.random() * CIPHER_CHARS.length)]).join("")
       );
     }, 90);
     return () => window.clearInterval(id);
-  }, [length, reduce]);
+  }, [length, reduce, inView]);
 
   return text;
 }
@@ -680,7 +680,9 @@ function useCipherText(length: number) {
 export function PrivacyVisual({ chip }: { chip: string }) {
   const t = useTranslations("Features.visuals");
   const reduce = useReducedMotion();
-  const cipher = useCipherText(20);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(stageRef);
+  const cipher = useCipherText(20, inView);
 
   const stats = [
     { value: "0", label: t("servers"), pos: "left-[6%] top-[30%]" },
@@ -689,7 +691,7 @@ export function PrivacyVisual({ chip }: { chip: string }) {
   ];
 
   return (
-    <Stage>
+    <Stage ref={stageRef}>
       <GlassChip className="right-4 top-4 @md:right-6 @md:top-6">
         <Lock className="h-4 w-4" aria-hidden />
         {chip}
