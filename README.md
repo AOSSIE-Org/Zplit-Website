@@ -54,6 +54,8 @@
 
 Zplit is an open-source mobile application designed to simplify group expense management through a decentralized architecture. Zplit's core features are expense tracking, group management, and debt calculation, while prioritizing user data privacy, offline functionality, and peer-to-peer synchronization.
 
+📱 **Get the app:** [Zplit on Google Play](https://play.google.com/store/apps/details?id=org.aossie.zplit) · 🧑‍💻 **App source:** [AOSSIE-Org/Zplit](https://github.com/AOSSIE-Org/Zplit)
+
 This website is a high-performance, developer-friendly webpage built on **Next.js 16 (App Router)**, **React 19**, **Tailwind CSS v4**, and pre-configured for **Internationalization (i18n)** and **Localization (l10n)** using **next-intl**.
 
 ---
@@ -64,6 +66,9 @@ This website is a high-performance, developer-friendly webpage built on **Next.j
 - **Privacy First**: All data is encrypted and stored locally on your device. You own your financial data completely.
 - **Smart Expense Tracking**: Custom splits (equal, percentage, or custom amounts) with automatic debt calculation.
 - **Receipt OCR**: Snap a photo of any receipt, and on-device machine learning automatically extracts the details.
+- **Group Management**: Create groups for trips, flatmates and events with no accounts or sign-ups; invite via QR, NFC, Bluetooth or WiFi.
+- **Offline-First**: Works fully offline; changes sync peer-to-peer when friends are nearby.
+- **Visual Analytics**: Charts of group spending, category breakdowns and balances, with data export.
 
 ---
 
@@ -80,6 +85,8 @@ This website is a high-performance, developer-friendly webpage built on **Next.j
 - **Styling**: Tailwind CSS v4, CSS Variables
 - **I18n / Localization**: next-intl
 - **Theme**: next-themes
+- **Animation & Scrolling**: Framer Motion, Lenis
+- **Icons**: lucide-react (+ inline Simple Icons brand marks)
 
 ---
 
@@ -98,6 +105,21 @@ In the checklist below, mark the items that have been completed for your project
    - [x] Has automated CI build and lint validation (`.github/workflows/ci.yml`).
    - [x] Has CodeRabbit automated AI code review (`.coderabbit.yml`).
    - [x] Has open-source legal compliance (`DCO.md`, `COPYRIGHT.md`, `Contributors.md`).
+
+---
+
+## 🧭 Landing Page Sections
+
+| Section | Component | Highlights |
+| :--- | :--- | :--- |
+| Navbar | [`Navbar.tsx`](src/components/Navbar.tsx) | Glass effect that switches to a dark glass over the footer, logo scrolls to top, Contribute + Download (Play Store) CTAs |
+| Hero | [`Hero.tsx`](src/components/Hero.tsx) | App mockup, USPs and credibility metrics |
+| Features of Zplit | [`features/FeaturesShowcase.tsx`](src/components/features/FeaturesShowcase.tsx) | Scroll-driven pinned card (desktop) that highlights one feature at a time with animated, code-drawn app visuals ([`FeatureVisuals.tsx`](src/components/features/FeatureVisuals.tsx)); stacked cards on mobile |
+| Checkout Innovation | [`InnovationSection.tsx`](src/components/InnovationSection.tsx) | Interactive Lego tech-stack builder ([`TechStackMiniGame.tsx`](src/components/TechStackMiniGame.tsx), default tab, touch-friendly swipe tray on mobile) and P2P methods |
+| FAQs | [`FaqSection.tsx`](src/components/FaqSection.tsx) | Searchable, category-filtered accordion with `FAQPage` JSON-LD |
+| Footer | [`footer/Footer.tsx`](src/components/footer/Footer.tsx) | Interactive P2P mesh canvas ([`MeshCanvas.tsx`](src/components/footer/MeshCanvas.tsx)), download CTAs, marquee, magnetic socials and a "splitting" wordmark |
+
+All animations respect `prefers-reduced-motion`, off-screen animations are paused or unmounted, and every string lives in the `src/messages/*.json` catalogs.
 
 ---
 
@@ -138,7 +160,8 @@ Here is a breakdown of the key i18n directories and files:
 │           └── favicon.ico                  # Browser tab icon
 ├── src/
 │   ├── config/
-│   │   └── languages.ts        # Central registry of supported languages & locales
+│   │   ├── languages.ts        # Central registry of supported languages & locales
+│   │   └── links.ts            # External links (Play Store, GitHub, Discord, socials)
 │   ├── i18n/
 │   │   ├── routing.ts          # Core i18n routing parameters (locales, defaults)
 │   │   ├── request.ts          # Server-side translation dictionary loading configuration
@@ -157,6 +180,19 @@ Here is a breakdown of the key i18n directories and files:
 │   │       ├── error.tsx       # Localized Error Boundary page fallback
 │   │       └── not-found.tsx   # Localized 404 page fallback
 │   └── components/
+│       ├── Navbar.tsx           # Sticky glass navigation bar
+│       ├── Hero.tsx             # Hero section
+│       ├── InnovationSection.tsx # Tech Stack / P2P methods tabs
+│       ├── TechStackMiniGame.tsx # Interactive Lego tech stack builder
+│       ├── FaqSection.tsx       # Searchable FAQ accordion
+│       ├── features/
+│       │   ├── FeaturesShowcase.tsx # Scroll-driven "Features of Zplit" card
+│       │   └── FeatureVisuals.tsx   # Animated app illustrations for each feature
+│       ├── footer/
+│       │   ├── Footer.tsx       # Animated footer
+│       │   └── MeshCanvas.tsx   # Interactive peer-to-peer mesh background
+│       ├── icons/
+│       │   └── BrandIcon.tsx    # GitHub / Discord / X / Telegram / LinkedIn / YouTube marks
 │       ├── LanguageSwitcher.tsx # Dropdown element to switch interface locales interactively
 │       ├── ThemeToggle.tsx      # Multi-state theme switch with micro-animations
 │       └── providers/
@@ -273,6 +309,18 @@ Tailwind v4 is configured via CSS custom properties in [`src/app/[locale]/global
   --foreground: #f4f4f5; /* Dark theme text */
 }
 ```
+
+#### Section Tokens & Variants
+
+Besides the base palette, `globals.css` defines tokens for the always-dark surfaces and a few helpers:
+
+| Token / Variant | Purpose |
+| :--- | :--- |
+| `showcase-from`, `showcase-to`, `showcase-border`, `showcase-glow`, `showcase-stage` | "Features of Zplit" card surfaces (light & dark values) |
+| `footer-bg`, `footer-surface`, `footer-border`, `footer-text`, `footer-muted` | Footer surfaces and text (light & dark values) |
+| `accent-bright`, `accent-soft`, `aossie-gold` | Bright accents used on dark surfaces |
+| `.nav-on-dark` | Re-maps navbar tokens while it floats over the footer |
+| `tall:` variant | `@media (min-height: 860px)` – roomier spacing for pinned layouts |
 
 #### Using Theme Classes
 To create element styles that adapt automatically to the user's selected theme, use semantic utility tokens instead of inline `dark:` utilities:

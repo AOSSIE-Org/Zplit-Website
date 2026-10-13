@@ -36,5 +36,10 @@ This is the codebase for the Zplit website, an open-source decentralized payment
 ## 📦 Project Boundaries
 
 - **Config alias map:** Webpack & Turbopack alias resolvers are manually defined in [`next.config.ts`](next.config.ts) mapping `"next-intl/config"` to our local request setup. Do not import the native `@swc/core` compiler plugin wrapper `createNextIntlPlugin` directly to avoid security policy native module blocks.
+- **External Links:** Never hard-code outbound URLs (Play Store, GitHub, Discord, socials) in components. Add them to [`src/config/links.ts`](src/config/links.ts) and import `SITE_LINKS`.
+- **Brand Icons:** lucide-react no longer ships brand marks; use `BrandIcon` from [`src/components/icons/BrandIcon.tsx`](src/components/icons/BrandIcon.tsx).
+- **Dark surfaces:** The features showcase card and footer are dark in both themes. Style them with the `showcase-*`, `footer-*` and `accent-*` tokens (never raw hex classes). `FeatureVisuals.tsx` is the one intentional exception: it draws fixed-palette "app screens".
+- **Pinned layouts:** Use the `tall:` custom variant (min-height 860px) for height-dependent spacing inside sticky/pinned sections.
+- **Motion:** Respect `useReducedMotion()` / `motion-reduce:` and pause or unmount off-screen animations (see `LazyVisual`, `MeshCanvas`).
 - **Branding Assets:** The official branding logo, favicon, and style specifications reside inside [`public/brand/`](public/brand/).
 

@@ -5,13 +5,15 @@
     "features": "Features",
     "faq": "FAQ",
     "downloadApp": "Download app",
-    "toggleMenu": "Toggle navigation menu"
+    "toggleMenu": "Toggle navigation menu",
+    "backToTop": "Back to top",
+    "contribute": "Contribute"
   },
   "Hero": {
     "titleLine1": "Split Expenses",
     "titleLine2": "without Servers",
     "openSourceBadge": "Open Source",
-    "poweredBy": "Powered by",
+    "poweredBy": "Made by",
     "aossie": "AOSSIE",
     "features": {
       "item1Prefix": "First truly",
@@ -96,7 +98,7 @@
       "Storage": "Storage",
       "AI/ML": "AI/ML",
       "Visualization": "Visualization",
-      "Future: Web3": "Future: Web3",
+      "Future: Web3": "Web 3",
       "Security": "Security"
     },
     "controls": {
@@ -111,7 +113,8 @@
     "empty": {
       "allEquipped": "All {category} modules equipped!",
       "allEquippedGeneric": "All modules equipped!",
-      "hint": "Click on stacked blocks on the right to remove or switch categories above."
+      "hint": "Tap stacked blocks to remove them, or switch categories.",
+      "stageHint": "Tap a tech block to stack it on the Zplit app"
     },
     "base": {
       "title": "Zplit app",
@@ -169,6 +172,200 @@
         "desc": "Private Mesh"
       }
     }
+  },
+  "Features": {
+    "heading": "Features of Zplit",
+    "subheading": "Everything you need to split expenses with friends, without handing your data to anyone.",
+    "cta": "Get Zplit",
+    "stepLabel": "Feature {current} of {total}",
+    "items": {
+      "offline": {
+        "title": "Offline-First Sync",
+        "chip": "No internet needed",
+        "p1": "Works fully offline, anywhere you go.",
+        "p2": "Syncs peer-to-peer over WiFi Direct, Bluetooth and NFC.",
+        "p3": "Changes merge automatically when friends are nearby."
+      },
+      "groups": {
+        "title": "Group Management",
+        "chip": "No accounts. No sign-ups.",
+        "p1": "Create groups for trips, flatmates and events.",
+        "p2": "No email, phone number or account required.",
+        "p3": "Invite instantly via QR, NFC, Bluetooth or WiFi."
+      },
+      "splits": {
+        "title": "Smart Splits",
+        "chip": "Balances update instantly",
+        "p1": "Split equally, by percentage or by custom amounts.",
+        "p2": "Real-time balances show exactly who owes whom.",
+        "p3": "Filter expenses by date, category or member."
+      },
+      "ocr": {
+        "title": "Receipt Scanner",
+        "chip": "Processed on-device",
+        "p1": "Snap a receipt to capture merchant, amount and date.",
+        "p2": "On-device ML Kit OCR, so photos never leave your phone.",
+        "p3": "Review and add the expense in seconds."
+      },
+      "analytics": {
+        "title": "Visual Analytics",
+        "chip": "Export anytime",
+        "p1": "Clear charts of where your group's money goes.",
+        "p2": "Category breakdowns and debt balances at a glance.",
+        "p3": "Export your data whenever you want."
+      },
+      "privacy": {
+        "title": "Privacy by Design",
+        "chip": "Encrypted on your device",
+        "p1": "No cloud, no servers, no tracking. Ever.",
+        "p2": "Your data is encrypted and stored locally.",
+        "p3": "100% open source, so anyone can audit it."
+      }
+    },
+    "visuals": {
+      "yourPhone": "Your phone",
+      "friendPhone": "Maya's phone",
+      "synced": "Synced 3 expenses",
+      "via": "via {method}",
+      "expenseCab": "Cab to airport",
+      "expenseDinner": "Dinner",
+      "expenseGroceries": "Groceries",
+      "groupName": "Goa Trip",
+      "members": "{count} members",
+      "inviteVia": "Invite via",
+      "splitExpense": "Dinner at Café",
+      "paidByYou": "Paid by you",
+      "modeEqual": "Equal",
+      "modePercent": "Percent",
+      "modeCustom": "Custom",
+      "youAreOwed": "You're owed",
+      "scanning": "Scanning receipt…",
+      "detected": "Detected on-device",
+      "merchant": "Merchant",
+      "merchantValue": "Spice Route Café",
+      "total": "Total",
+      "date": "Date",
+      "dateValue": "12 Sep",
+      "groupSpending": "Group spending",
+      "thisMonth": "This month",
+      "catFood": "Food",
+      "catTravel": "Travel",
+      "catStay": "Stay",
+      "catFun": "Fun",
+      "servers": "Servers",
+      "trackers": "Trackers",
+      "onDevice": "On-device",
+      "encrypted": "AES-256 encrypted"
+    }
+  },
+  "FAQ": {
+    "heading": "FAQs",
+    "subheading": "Everything you might wonder about splitting expenses without servers, accounts or the cloud.",
+    "searchPlaceholder": "Search questions…",
+    "searchLabel": "Search frequently asked questions",
+    "noResults": "No questions match “{query}”.",
+    "clearSearch": "Clear search",
+    "categories": {
+      "all": "All",
+      "general": "General",
+      "sync": "Sync & Offline",
+      "privacy": "Privacy & Security",
+      "features": "Features"
+    },
+    "stillQuestions": "Still have questions?",
+    "stillDesc": "Our community of contributors is happy to help you out.",
+    "askDiscord": "Ask on Discord",
+    "openIssue": "Open an issue",
+    "items": {
+      "whatIs": {
+        "q": "What is Zplit?",
+        "a": "Zplit is an open-source mobile app for splitting group expenses. Unlike other expense-sharing apps, it is fully decentralized: there are no servers, no cloud and no accounts. Your data lives on your device and syncs directly with your friends' devices."
+      },
+      "noServers": {
+        "q": "How does Zplit work without servers?",
+        "a": "Zplit uses peer-to-peer technologies like WiFi Direct, Bluetooth and NFC to sync data directly between devices. All your expense data is stored locally on your device with encryption. When you're near friends, devices sync changes with each other."
+      },
+      "notNearby": {
+        "q": "What if I'm not near my friends?",
+        "a": "You can share groups and expenses via QR codes or deep links that work over any messaging app. The data syncs when the code is scanned or the link is opened. You can also export encrypted backups and share them manually."
+      },
+      "offline": {
+        "q": "Does Zplit need an internet connection?",
+        "a": "No. Zplit is offline-first, so you can create groups, add expenses and check balances with no connection at all, whether you're on a mountain trek or a flight. Everything syncs once your devices meet again."
+      },
+      "secure": {
+        "q": "Is my financial data secure?",
+        "a": "Yes. All data is encrypted and stored only on your device. There are no Zplit servers, so there is no central database to breach. Peer-to-peer transfers are end-to-end encrypted, and you stay in full control of your data."
+      },
+      "account": {
+        "q": "Do I need to create an account?",
+        "a": "No. There are no sign-ups, emails or phone numbers. Just create a group and invite friends by QR code, NFC, Bluetooth or WiFi."
+      },
+      "splits": {
+        "q": "How can I split an expense?",
+        "a": "Split any expense equally, by percentage or by custom amounts. Zplit calculates balances in real time so everyone can see who owes whom, and you can filter expenses by date, category or member."
+      },
+      "ocr": {
+        "q": "How does receipt scanning work?",
+        "a": "Point your camera at a receipt and Zplit extracts the merchant name, amount and date using on-device machine learning (Google ML Kit). The image is processed locally and never uploaded anywhere."
+      },
+      "platforms": {
+        "q": "Which platforms does Zplit support?",
+        "a": "Zplit is available on Android through Google Play. It is built with Flutter, a single cross-platform codebase that also targets iOS."
+      },
+      "openSource": {
+        "q": "Is Zplit free and open source?",
+        "a": "Yes. Zplit is free and 100% open source, developed in the open under AOSSIE. You can read, audit and build every line of code yourself from GitHub."
+      },
+      "contribute": {
+        "q": "How can I contribute?",
+        "a": "Head to the Zplit repository on GitHub, pick an issue or propose a feature, and open a pull request. Bug reports and ideas are just as welcome. Say hello on Discord to get started."
+      }
+    }
+  },
+  "Footer": {
+    "ctaTitle": "Ready to split without servers?",
+    "ctaDesc": "Zplit is being built in the open by the AOSSIE community.<br></br>Grab the source, build it yourself, or help shape what comes next.",
+    "comingSoon": "Coming soon",
+    "appStore": "App Store",
+    "marquee": {
+      "m1": "No servers",
+      "m2": "No cloud",
+      "m3": "No tracking",
+      "m4": "Offline-first",
+      "m5": "Peer-to-peer",
+      "m6": "Open source",
+      "m7": "Encrypted on-device"
+    },
+    "tagline": "The decentralized way to split expenses with friends: private, offline and peer-to-peer.",
+    "columns": {
+      "product": "Product",
+      "community": "Community",
+      "project": "Project"
+    },
+    "links": {
+      "features": "Features",
+      "innovation": "Innovation",
+      "faq": "FAQ",
+      "download": "Download",
+      "sourceCode": "Source code",
+      "reportIssue": "Report an issue",
+      "aossie": "AOSSIE",
+      "stabilityNexus": "Stability Nexus"
+    },
+    "social": {
+      "github": "GitHub",
+      "discord": "Discord",
+      "x": "X (Twitter)",
+      "telegram": "Telegram",
+      "linkedin": "LinkedIn",
+      "youtube": "YouTube"
+    },
+    "wordmarkReveal": "Split bills, not your privacy.",
+    "copyright": "© {year} AOSSIE. All rights reserved.",
+    "madeWith": "Made with <heart></heart> by AOSSIE Community",
+    "heartLabel": "love",
+    "getItOn": "Get it on",
+    "googlePlay": "Google Play"
   }
 }
-
