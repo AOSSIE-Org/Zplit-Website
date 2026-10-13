@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Zplit",
+  "name_for_model": "zplit",
+  "description_for_human": "Zplit is a decentralized, privacy-first expense sharing application.",
+  "description_for_model": "Retrieve settings, theme configuration, and supported locales from Zplit, a decentralized, privacy-first expense sharing application.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://zplit.aossie.org/openapi.yaml",
+    "is_user_authenticated": false
+  },
+  "logo_url": "https://zplit.aossie.org/brand/icons/zplit_logo.svg",
+  "contact_email": "aossie.oss@gmail.com",
+  "legal_info_url": "https://zplit.aossie.org/legal"
+}
