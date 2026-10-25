@@ -49,7 +49,7 @@
 ---
 
 <div align="center">
-<h1>Zplit (AOSSIE Webpage Template)</h1>
+<h1>Zplit</h1>
 </div>
 
 Zplit is an open-source mobile application designed to simplify group expense management through a decentralized architecture. Zplit's core features are expense tracking, group management, and debt calculation, while prioritizing user data privacy, offline functionality, and peer-to-peer synchronization.
@@ -90,9 +90,9 @@ This website is a high-performance, developer-friendly webpage built on **Next.j
 
 ---
 
-## 📋 Project Maturity & TODO Checklist
+## 📋 Project Maturity Checklist
 
-In the checklist below, mark the items that have been completed for your project:
+Completed project maturity items:
 
 * [x] The project has a logo (`public/brand/icons/aossie_logo.svg`).
 * [x] The project has a favicon (`public/brand/icons/favicon.ico`).
@@ -104,7 +104,7 @@ In the checklist below, mark the items that have been completed for your project
    - [x] Is deployed to GitHub Pages via a GitHub Workflow (`.github/workflows/nextjs.yml`).
    - [x] Has automated CI build and lint validation (`.github/workflows/ci.yml`).
    - [x] Has CodeRabbit automated AI code review (`.coderabbit.yml`).
-   - [x] Has open-source legal compliance (`DCO.md`, `COPYRIGHT.md`, `Contributors.md`).
+   - [x] Has open-source legal compliance (`DCO.md`, `COPYRIGHT.md`, `CONTRIBUTING.md`).
 
 ---
 
@@ -200,7 +200,7 @@ Here is a breakdown of the key i18n directories and files:
 │           └── lenis-provider.tsx # Lenis smooth scrolling provider wrapper
 ├── .coderabbit.yml         # Automated AI Code Review configuration
 ├── COPYRIGHT.md            # Copyright terms
-├── Contributors.md         # Project contributors list
+├── CONTRIBUTING.md         # Contribution guide
 └── DCO.md                  # Developer Certificate of Origin
 ```
 
@@ -290,7 +290,7 @@ router.replace(pathname, { locale: 'hi' });
 
 ### 4. Theme Configuration & Dual Theme Support
 
-The starter kit uses `next-themes` combined with Tailwind CSS v4's class-based custom variants to provide a responsive and flash-free theme experience.
+The the website uses `next-themes` combined with Tailwind CSS v4's class-based custom variants to provide a responsive and flash-free theme experience.
 
 #### Customizing Colors
 
@@ -335,7 +335,7 @@ To create element styles that adapt automatically to the user's selected theme, 
 
 ### 5. Smooth Scrolling (Lenis)
 
-The starter repository integrates the `lenis` library to provide smooth, high-performance inertial scrolling across all browsers.
+The the website integrates the `lenis` library to provide smooth, high-performance inertial scrolling across all browsers.
 
 #### Customizing Lenis Options
 To configure scroll parameters (e.g., dampening velocity, custom scroll durations, or scroll directions), update the parameters passed to the `ReactLenis` component in [`lenis-provider.tsx`](src/components/providers/lenis-provider.tsx):
@@ -383,40 +383,6 @@ npm run build
 ```
 
 This generates an optimized static export in the `./out` directory, fully configured for client-side rendering and hosting on GitHub Pages.
-
----
-
-## ⚙️ Initial Project Setup Checklist
-
-When bootstrapping a new project from this starter repository, complete the following `TODO` setup checklist to align the repository with your project's branding, metadata, AI agent guidelines, and hosting configurations:
-
-### 1. Project Identity & Header Details
-
-- **Project Title & Logo ([`README.md`](README.md))**: Update the main project header logo (`public/brand/icons/todo-project-logo.svg`), title `<h1>TODO: Project Name</h1>`, project description, feature list, and tech stack.
-- **AI Agent Context ([`AGENTS.md`](AGENTS.md))**: Replace `# TODO: Project Title` and add project-specific directives and rules for AI coding agents.
-- **LLM Manifest ([`public/llms.txt`](public/llms.txt))**: Update `# TODO: Project Title` in the root LLM crawler policy.
-- **Community & Social Links ([`Contributors.md`](Contributors.md))**: Replace the `[TODO Channel](TODO)` placeholder with your project's Discord, Telegram, or chat channel link.
-
-### 2. Domain Names & Search Engine Crawlers
-
-- **Sitemap Generator ([`src/app/sitemap.ts`](src/app/sitemap.ts))**: Replace the default fallback domain `https://project.aossie.org` with your project's production domain in the source code or set the `NEXT_PUBLIC_SITE_URL` environment variable at build time (e.g., in `.github/workflows/nextjs.yml` or build pipeline settings).
-- **Search Crawler Rules ([`public/robots.txt`](public/robots.txt))**: Replace the sitemap URL placeholder domain `TODO 'project.aossie.org'` with your actual production domain.
-
-### 3. Branding Guidelines & Assets
-
-- **Logo & Favicons ([`public/brand/icons/`](public/brand/icons/))**: Replace `aossie_logo.svg` and `favicon.ico` with your organization's custom logos.
-- **Brand Documentation ([`public/brand/Brand.md`](public/brand/Brand.md))**: Document your custom color hex codes, typography selections, and asset paths here to guide future developers and AI coding agents.
-
-### 4. SEO & i18n Localization Metadata
-
-- **Schema.org JSON-LD ([`src/app/[locale]/page.tsx`](src/app/[locale]/page.tsx))**: Locate the `jsonLd` object inside the `Home` component. Update the `publisher.name`, `publisher.url`, and `publisher.logo` fields from `TODO` placeholders to your project metadata.
-- **Translation Catalogs ([`src/messages/en.json`](src/messages/en.json), [`src/messages/hi.json`](src/messages/hi.json))**: Update the `heading`, `metaTitle`, and `metaDescription` keys with your project's localized titles and descriptions.
-
-### 5. Mobile & AI Platform Configurations
-
-- **Android App Links ([`public/.well-known/assetlinks.json`](public/.well-known/assetlinks.json))**: Update the package name `TODO:org.aossie.starter` and insert your Android application certificate SHA-256 fingerprint (`TODO:...`).
-- **AI Agent Plugins ([`public/.well-known/ai-plugin.json`](public/.well-known/ai-plugin.json))**: Replace all `TODO` placeholders for `name_for_human`, `name_for_model`, `description_for_human`, `description_for_model`, host URLs, contact emails, and legal info links.
-
 
 ---
 
