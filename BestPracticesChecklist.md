@@ -20,10 +20,10 @@
 | Basics             | 8   | 0   | 8                  | 🟢     |
 | Change Control     | 1   | 5   | 1 (6)              | 🟢     |
 | Reporting          | 7   | 1   | 7 (8)              | 🟢     |
-| Quality            | 11  | 0   | 11                 | 🟢     |
+| Quality            | 10  | 0   | 11                 | 🟡     |
 | Security           | 3   | 6   | 3 (9)              | 🟢     |
 | Analysis           | 5   | 2   | 5 (7)              | 🟢     |
-| **Total**          | **35** | **14** | **35 (49)**    | **100.0%** |
+| **Total**          | **34** | **14** | **35 (49)**    | **97.1%** |
 
 *N/A items are excluded from the denominator.*
 
@@ -139,8 +139,9 @@
 - [x] 🔵 **test_invocation** — The test suite can be invoked in a standard way. *(SUGGESTED)*
   - *Evidence URL:* `npm test` / `npm run test:coverage` (https://github.com/AOSSIE-Org/Zplit-Website/blob/main/package.json)
 
-- [x] 🔵 **test_most** — The test suite covers most code branches and functionality. *(SUGGESTED)*
-  - *Evidence URL:* https://github.com/AOSSIE-Org/Zplit-Website/blob/main/vitest.config.mts (90% line/branch/function thresholds on logic modules, enforced in CI)
+- [ ] 🔵 **test_most** — The test suite covers most code branches and functionality. *(SUGGESTED)*
+  - *Evidence URL:* https://github.com/AOSSIE-Org/Zplit-Website/blob/main/vitest.config.mts (90% line/branch/function thresholds, enforced in CI, on the scoped logic modules: config, SEO metadata and sitemap)
+  - *Not met yet:* the UI components (navbar, features, FAQ, footer) have no automated tests, so the suite does not cover most of the site's functionality.
 
 ### New Functionality Testing Policy
 
@@ -209,7 +210,7 @@
   - *Note:* CodeRabbit reviews every PR (security findings are resolved before merge); OpenSSF Scorecard runs weekly.
 
 - [x] 🔵 **static_analysis_common_vulnerabilities** — The static analysis tool includes checks for common vulnerabilities. *(SUGGESTED)*
-  - *Tool + ruleset:* CodeRabbit security review (https://github.com/AOSSIE-Org/Zplit-Website/blob/main/.coderabbit.yaml) and OpenSSF Scorecard (https://github.com/AOSSIE-Org/Zplit-Website/blob/main/.github/workflows/scorecard.yml).
+  - *Tool + ruleset:* CodeRabbit security review (https://github.com/AOSSIE-Org/Zplit-Website/blob/main/.coderabbit.yml) and OpenSSF Scorecard (https://github.com/AOSSIE-Org/Zplit-Website/blob/main/.github/workflows/scorecard.yml).
 
 - [x] 🔵 **static_analysis_often** — Static analysis runs on every commit or at least daily. *(SUGGESTED)*
   - *Evidence URL:* https://github.com/AOSSIE-Org/Zplit-Website/blob/main/.github/workflows/ci.yml (ESLint on every PR and push to main)

@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import sitemap from "@/app/sitemap";
 import { routing } from "@/i18n/routing";
 import { defaultLanguage, languages } from "@/config/languages";
@@ -10,6 +10,9 @@ vi.mock("next-intl/server", () => ({
 
 const SITE = "https://zplit.aossie.org";
 
+// Clear any preview URL from the environment so the production assertions are deterministic;
+// the override tests stub their own value
+beforeEach(() => vi.stubEnv("NEXT_PUBLIC_SITE_URL", ""));
 afterEach(() => vi.unstubAllEnvs());
 
 describe("Locale configuration", () => {

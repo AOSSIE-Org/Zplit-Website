@@ -409,13 +409,12 @@ Tests in [`tests/`](tests/) cover SEO metadata, the sitemap, site links and tran
 We welcome contributions of all kinds! To contribute:
 
 1. Fork the repository and create your feature branch (`git checkout -b feature/AmazingFeature`).
-2. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-3. Ensure code quality (CI runs the same checks):
+2. Ensure code quality (CI runs the same checks):
    - `npm run lint`
    - `npm run test:coverage`
    - `npm run build`
-4. Sign off your commits (`git commit -s`), see [CONTRIBUTING.md](CONTRIBUTING.md).
-5. Push your branch (`git push origin feature/AmazingFeature`).
-6. Open a Pull Request and share it in the [#Zplit Discord channel](https://discord.com/channels/1022871757289422898/1438097765887643709).
+3. Commit your changes with a sign-off (`git commit -s -m 'Add some AmazingFeature'`), see [CONTRIBUTING.md](CONTRIBUTING.md).
+4. Push your branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request and share it in the [#Zplit Discord channel](https://discord.com/channels/1022871757289422898/1438097765887643709).
 
 © 2026 AOSSIE. Released under the Apache 2.0 / Open Source License.
