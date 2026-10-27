@@ -10,9 +10,11 @@ This is the codebase for the Zplit website, an open-source decentralized payment
 
 ## 🛠️ Stack & Commands
 
-- **Stack:** Next.js 16.2.11 App Router (Turbopack), React 19, Tailwind CSS v4, `next-intl` (i18n), `next-themes` (light/dark state manager).
-- **Build:** `npm run build`
+- **Stack:** Next.js 16.4.3 App Router (Turbopack), React 19, Tailwind CSS v4, `next-intl` (i18n), `next-themes` (light/dark state manager).
+- **Build:** `npm run build` (static export to `out/`)
 - **Develop:** `npm run dev`
+- **Lint:** `npm run lint`
+- **Test:** `npm test` · `npm run test:coverage` (90% threshold on `src/config`, `src/i18n/metadata.ts`, `src/app/sitemap.ts`; enforced in CI)
 
 ---
 
@@ -41,5 +43,6 @@ This is the codebase for the Zplit website, an open-source decentralized payment
 - **Dark surfaces:** The features showcase card and footer are dark in both themes. Style them with the `showcase-*`, `footer-*` and `accent-*` tokens (never raw hex classes). `FeatureVisuals.tsx` is the one intentional exception: it draws fixed-palette "app screens".
 - **Pinned layouts:** Use the `tall:` custom variant (min-height 860px) for height-dependent spacing inside sticky/pinned sections.
 - **Motion:** Respect `useReducedMotion()` / `motion-reduce:` and pause or unmount off-screen animations (see `LazyVisual`, `MeshCanvas`).
-- **Branding Assets:** The official branding logo, favicon, and style specifications reside inside [`public/brand/`](public/brand/).
+- **Branding Assets:** The official branding logo, favicon, and style specifications reside inside [`public/brand/`](public/brand/). The social share image is [`public/og-image.png`](public/og-image.png) (1200x630 PNG; never point Open Graph at an SVG).
+- **Root route:** [`src/app/(root)/`](src/app/(root)/) serves the bare `/` with the default locale's metadata and a `<meta http-equiv="refresh">` to `/en`. Do not replace it with `redirect()`, which exports an empty error page.
 

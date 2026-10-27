@@ -94,7 +94,7 @@ export default function FaqSection() {
                   href={SITE_LINKS.discord}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-brand-hover active:scale-95"
+                  className="inline-flex items-center gap-2 rounded-full bg-button-primary-bg px-5 py-2.5 text-sm font-semibold text-button-primary-text transition-all hover:bg-button-primary-hover-bg active:scale-95"
                 >
                   <BrandIcon name="discord" className="h-4.5 w-4.5" />
                   {t("askDiscord")}
@@ -148,13 +148,13 @@ export default function FaqSection() {
                   aria-pressed={selected}
                   onClick={() => setCategory(c)}
                   className={`relative cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
-                    selected ? "text-white" : "text-foreground-muted hover:text-brand-primary"
+                    selected ? "text-button-primary-text" : "text-foreground-muted hover:text-brand-primary"
                   }`}
                 >
                   {selected && (
                     <motion.span
                       layoutId={`${baseId}-faq-pill`}
-                      className="absolute inset-0 -z-0 rounded-full bg-brand-primary"
+                      className="absolute inset-0 -z-0 rounded-full bg-button-primary-bg"
                       transition={{ type: "spring", stiffness: 420, damping: 34 }}
                     />
                   )}
