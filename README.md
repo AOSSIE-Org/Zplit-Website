@@ -45,11 +45,17 @@
   </a>
 </p>
 
+<p align="center">
+  <a href="https://github.com/AOSSIE-Org/Zplit-Website/actions/workflows/ci.yml"><img src="https://github.com/AOSSIE-Org/Zplit-Website/actions/workflows/ci.yml/badge.svg" alt="CI"/></a>
+  <a href="https://github.com/AOSSIE-Org/Zplit-Website/actions/workflows/nextjs.yml"><img src="https://github.com/AOSSIE-Org/Zplit-Website/actions/workflows/nextjs.yml/badge.svg" alt="Deploy"/></a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/AOSSIE-Org/Zplit-Website"><img src="https://api.scorecard.dev/projects/github.com/AOSSIE-Org/Zplit-Website/badge" alt="OpenSSF Scorecard"/></a>
+</p>
+
 
 ---
 
 <div align="center">
-<h1>Zplit (AOSSIE Webpage Template)</h1>
+<h1>Zplit</h1>
 </div>
 
 Zplit is an open-source mobile application designed to simplify group expense management through a decentralized architecture. Zplit's core features are expense tracking, group management, and debt calculation, while prioritizing user data privacy, offline functionality, and peer-to-peer synchronization.
@@ -90,21 +96,23 @@ This website is a high-performance, developer-friendly webpage built on **Next.j
 
 ---
 
-## 📋 Project Maturity & TODO Checklist
+## 📋 Project Maturity Checklist
 
-In the checklist below, mark the items that have been completed for your project:
+Status of the GSoC / AOSSIE project checklist for this website:
 
-* [x] The project has a logo (`public/brand/icons/aossie_logo.svg`).
+* [x] The project has a logo (`public/brand/icons/zplit_logo.svg`).
 * [x] The project has a favicon (`public/brand/icons/favicon.ico`).
 * [x] The web frontend:
    - [x] Has proper title and metadata.
-   - [x] Has proper open graph metadata, to ensure that it is shown well when shared in social media.
+   - [x] Has proper open graph metadata (1200x630 `public/og-image.png`), so it is shown well when shared in social media.
    - [x] Has a footer and header with AOSSIE logos and social handles.
    - [x] Uses React Server Components by default, introducing Client Components (`"use client"`) only when interactivity or client hooks are required.
    - [x] Is deployed to GitHub Pages via a GitHub Workflow (`.github/workflows/nextjs.yml`).
-   - [x] Has automated CI build and lint validation (`.github/workflows/ci.yml`).
-   - [x] Has CodeRabbit automated AI code review (`.coderabbit.yml`).
-   - [x] Has open-source legal compliance (`DCO.md`, `COPYRIGHT.md`, `Contributors.md`).
+   - [x] Has automated CI lint, test (90% coverage gate) and build validation (`.github/workflows/ci.yml`).
+   - [x] Has a `sitemap.xml` and a `robots.txt` that blocks `/pr-preview/`.
+   - [x] Has OpenSSF Scorecard analysis (`.github/workflows/scorecard.yml`).
+   - [x] Has CodeRabbit automated AI code review tailored to this project (`.coderabbit.yml`).
+   - [x] Has open-source legal compliance (`DCO.md`, `COPYRIGHT.md`, `CONTRIBUTING.md`).
 
 ---
 
@@ -171,7 +179,7 @@ Here is a breakdown of the key i18n directories and files:
 │   │   ├── en.json             # English translation dictionary
 │   │   └── hi.json             # Hindi translation dictionary
 │   ├── app/
-│   │   ├── page.tsx            # Root page redirecting to default locale (/en) for static export
+│   │   ├── (root)/             # Bare `/`: full metadata + meta-refresh to /en (static export)
 │   │   ├── sitemap.ts          # Statically generated localized sitemaps
 │   │   └── [locale]/           # Localized route group
 │   │       ├── layout.tsx      # Multi-lingual layout injecting client context & translations
@@ -200,7 +208,7 @@ Here is a breakdown of the key i18n directories and files:
 │           └── lenis-provider.tsx # Lenis smooth scrolling provider wrapper
 ├── .coderabbit.yml         # Automated AI Code Review configuration
 ├── COPYRIGHT.md            # Copyright terms
-├── Contributors.md         # Project contributors list
+├── CONTRIBUTING.md         # Contribution guide
 └── DCO.md                  # Developer Certificate of Origin
 ```
 
@@ -225,7 +233,7 @@ To add support for a new language (e.g., French - `fr`):
    ```json
    {
      "Home": {
-       "heading": "Bienvenue sur AOSSIE Webpage Starter"
+       "heading": "Bienvenue sur Zplit"
      }
    }
    ```
@@ -290,7 +298,7 @@ router.replace(pathname, { locale: 'hi' });
 
 ### 4. Theme Configuration & Dual Theme Support
 
-The starter kit uses `next-themes` combined with Tailwind CSS v4's class-based custom variants to provide a responsive and flash-free theme experience.
+The website uses `next-themes` combined with Tailwind CSS v4's class-based custom variants to provide a responsive and flash-free theme experience.
 
 #### Customizing Colors
 
@@ -335,7 +343,7 @@ To create element styles that adapt automatically to the user's selected theme, 
 
 ### 5. Smooth Scrolling (Lenis)
 
-The starter repository integrates the `lenis` library to provide smooth, high-performance inertial scrolling across all browsers.
+The website integrates the `lenis` library to provide smooth, high-performance inertial scrolling across all browsers.
 
 #### Customizing Lenis Options
 To configure scroll parameters (e.g., dampening velocity, custom scroll durations, or scroll directions), update the parameters passed to the `ReactLenis` component in [`lenis-provider.tsx`](src/components/providers/lenis-provider.tsx):
@@ -382,41 +390,17 @@ Compile and export the project into static HTML/CSS/JS assets for hosting on Git
 npm run build
 ```
 
-This generates an optimized static export in the `./out` directory, fully configured for client-side rendering and hosting on GitHub Pages.
+This generates an optimized static export in the `./out` directory, fully configured for client-side rendering and hosting on GitHub Pages. Preview it locally with `npx serve out`.
 
----
+### Testing
 
-## ⚙️ Initial Project Setup Checklist
+```bash
+npm test                # run the Vitest suite once
+npm run test:watch      # re-run on file changes
+npm run test:coverage   # with coverage; fails below 90% (same as CI)
+```
 
-When bootstrapping a new project from this starter repository, complete the following `TODO` setup checklist to align the repository with your project's branding, metadata, AI agent guidelines, and hosting configurations:
-
-### 1. Project Identity & Header Details
-
-- **Project Title & Logo ([`README.md`](README.md))**: Update the main project header logo (`public/brand/icons/todo-project-logo.svg`), title `<h1>TODO: Project Name</h1>`, project description, feature list, and tech stack.
-- **AI Agent Context ([`AGENTS.md`](AGENTS.md))**: Replace `# TODO: Project Title` and add project-specific directives and rules for AI coding agents.
-- **LLM Manifest ([`public/llms.txt`](public/llms.txt))**: Update `# TODO: Project Title` in the root LLM crawler policy.
-- **Community & Social Links ([`Contributors.md`](Contributors.md))**: Replace the `[TODO Channel](TODO)` placeholder with your project's Discord, Telegram, or chat channel link.
-
-### 2. Domain Names & Search Engine Crawlers
-
-- **Sitemap Generator ([`src/app/sitemap.ts`](src/app/sitemap.ts))**: Replace the default fallback domain `https://project.aossie.org` with your project's production domain in the source code or set the `NEXT_PUBLIC_SITE_URL` environment variable at build time (e.g., in `.github/workflows/nextjs.yml` or build pipeline settings).
-- **Search Crawler Rules ([`public/robots.txt`](public/robots.txt))**: Replace the sitemap URL placeholder domain `TODO 'project.aossie.org'` with your actual production domain.
-
-### 3. Branding Guidelines & Assets
-
-- **Logo & Favicons ([`public/brand/icons/`](public/brand/icons/))**: Replace `aossie_logo.svg` and `favicon.ico` with your organization's custom logos.
-- **Brand Documentation ([`public/brand/Brand.md`](public/brand/Brand.md))**: Document your custom color hex codes, typography selections, and asset paths here to guide future developers and AI coding agents.
-
-### 4. SEO & i18n Localization Metadata
-
-- **Schema.org JSON-LD ([`src/app/[locale]/page.tsx`](src/app/[locale]/page.tsx))**: Locate the `jsonLd` object inside the `Home` component. Update the `publisher.name`, `publisher.url`, and `publisher.logo` fields from `TODO` placeholders to your project metadata.
-- **Translation Catalogs ([`src/messages/en.json`](src/messages/en.json), [`src/messages/hi.json`](src/messages/hi.json))**: Update the `heading`, `metaTitle`, and `metaDescription` keys with your project's localized titles and descriptions.
-
-### 5. Mobile & AI Platform Configurations
-
-- **Android App Links ([`public/.well-known/assetlinks.json`](public/.well-known/assetlinks.json))**: Update the package name `TODO:org.aossie.starter` and insert your Android application certificate SHA-256 fingerprint (`TODO:...`).
-- **AI Agent Plugins ([`public/.well-known/ai-plugin.json`](public/.well-known/ai-plugin.json))**: Replace all `TODO` placeholders for `name_for_human`, `name_for_model`, `description_for_human`, `description_for_model`, host URLs, contact emails, and legal info links.
-
+Tests in [`tests/`](tests/) cover SEO metadata, the sitemap, site links and translation-catalog parity (keys, empty strings, ICU placeholders), including [fast-check](https://fast-check.dev) property tests.
 
 ---
 
@@ -426,10 +410,12 @@ We welcome contributions of all kinds! To contribute:
 
 1. Fork the repository and create your feature branch (`git checkout -b feature/AmazingFeature`).
 2. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-3. Ensure code quality:
+3. Ensure code quality (CI runs the same checks):
    - `npm run lint`
+   - `npm run test:coverage`
    - `npm run build`
-4. Push your branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request for review.
+4. Sign off your commits (`git commit -s`), see [CONTRIBUTING.md](CONTRIBUTING.md).
+5. Push your branch (`git push origin feature/AmazingFeature`).
+6. Open a Pull Request and share it in the [#Zplit Discord channel](https://discord.com/channels/1022871757289422898/1438097765887643709).
 
 © 2026 AOSSIE. Released under the Apache 2.0 / Open Source License.

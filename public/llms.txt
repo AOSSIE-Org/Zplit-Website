@@ -1,4 +1,4 @@
-# Zplit Website (AOSSIE Webpage Template)
+# Zplit Website
 
 Zplit is an open-source decentralized payment splitting mobile app built with Flutter. Zplit's Core Features are expense tracking, group management, and debt calculation—while prioritizing user data privacy, offline functionality, and peer-to-peer synchronization.
 
@@ -13,7 +13,6 @@ Zplit is an open-source decentralized payment splitting mobile app built with Fl
 - **`src/i18n/`**: Configurations for translation lookups and custom navigation helpers.
 - **`src/messages/`**: Directory containing translation catalogs (e.g., `en.json`, `hi.json`).
 - **`src/components/`**: Location for reusable, localized UI components.
-- **`src/proxy.ts`**: Next.js 16 Proxy Middleware for automatic locale routing.
 
 ---
 

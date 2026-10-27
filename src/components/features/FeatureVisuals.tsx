@@ -265,7 +265,7 @@ export function GroupsVisual({ chip }: { chip: string }) {
           className="w-full max-w-[340px] rounded-2xl bg-white p-4 shadow-2xl @md:p-5"
         >
           <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#00B643] text-sm font-bold text-white">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#00843D] text-sm font-bold text-white">
               {t("groupName").slice(0, 1)}
             </div>
             <div>
@@ -309,7 +309,7 @@ export function GroupsVisual({ chip }: { chip: string }) {
                 <motion.span
                   key={i}
                   animate={{
-                    backgroundColor: i === inviteIndex ? "#00B643" : "#f4f4f5",
+                    backgroundColor: i === inviteIndex ? "#00843D" : "#f4f4f5",
                     color: i === inviteIndex ? "#ffffff" : "#52525b",
                     scale: i === inviteIndex ? 1.12 : 1,
                   }}
@@ -376,7 +376,7 @@ export function SplitsVisual({ chip }: { chip: string }) {
           <div className="relative mb-3 grid grid-cols-3 rounded-lg bg-zinc-100 p-1">
             <motion.span
               aria-hidden
-              className="absolute bottom-1 left-1 top-1 rounded-md bg-[#00B643] shadow-sm"
+              className="absolute bottom-1 left-1 top-1 rounded-md bg-[#00843D] shadow-sm"
               style={{ width: "calc((100% - 0.5rem) / 3)" }}
               animate={{ x: `${mode * 100}%` }}
               transition={{ type: "spring", stiffness: 420, damping: 32 }}
@@ -533,7 +533,7 @@ export function OcrVisual({ chip }: { chip: string }) {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 500, damping: 18, delay: 0.95 + i * 0.45 }}
-                  className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#00B643]"
+                  className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#00843D]"
                 >
                   <Check className="h-3 w-3 text-white" strokeWidth={3} aria-hidden />
                 </motion.span>
