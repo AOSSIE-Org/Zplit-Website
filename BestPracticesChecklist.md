@@ -139,9 +139,9 @@
 - [x] 🔵 **test_invocation** — The test suite can be invoked in a standard way. *(SUGGESTED)*
   - *Evidence URL:* `npm test` / `npm run test:coverage` (https://github.com/AOSSIE-Org/Zplit-Website/blob/main/package.json)
 
-- [ ] 🔵 **test_most** — The test suite covers most code branches and functionality. *(SUGGESTED)*
-  - *Evidence URL:* https://github.com/AOSSIE-Org/Zplit-Website/blob/main/vitest.config.mts (90% line/branch/function thresholds, enforced in CI, on the scoped logic modules: config, SEO metadata and sitemap)
-  - *Not met yet:* the UI components (navbar, features, FAQ, footer) have no automated tests, so the suite does not cover most of the site's functionality.
+- [x] 🔵 **test_most** — The test suite covers most code branches and functionality. *(SUGGESTED)*
+  - *Evidence URL:* https://github.com/AOSSIE-Org/Zplit-Website/blob/main/vitest.config.mts (coverage measured on all of `src/`, excluding only type declarations; 90% line/statement/function/branch thresholds enforced in CI by `npm run test:coverage`)
+  - *Evidence URL:* https://github.com/AOSSIE-Org/Zplit-Website/tree/main/tests (unit, render and fast-check property tests for every page and component)
 
 ### New Functionality Testing Policy
 
@@ -218,7 +218,7 @@
 ### Dynamic Code Analysis
 
 - [ ] 🔵 **dynamic_analysis** — Dynamic analysis applied before major releases. *(SUGGESTED)*
-  - *Not met yet:* no fuzzer or input-varying scanner runs before deploys, and branch coverage above 80% is only measured on the scoped logic modules (see `test_most`). Lighthouse audits are run on the deployed site, but they do not vary inputs.
+  - *Not met yet:* no fuzzer or input-varying scanner runs before deploys. (Branch coverage above 80% is now enforced on the whole code base, see `test_most`, and fast-check property tests run in CI, but they are part of the test suite rather than a pre-release dynamic analysis.) Lighthouse audits are run on the deployed site, but they do not vary inputs.
 
 - [x] 🔵 **dynamic_analysis_enable_assertions** — Dynamic analysis runs with assertions enabled. *(SUGGESTED)*
   - *Note:* Vitest executes hooks and modules in jsdom with React's development build, so runtime invariant checks are active.

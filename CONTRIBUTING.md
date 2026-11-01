@@ -59,7 +59,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
    ```
 
 3. **Automated Testing Policy:**
-   New functionality should include corresponding automated tests where applicable to ensure code quality and prevent regressions.
+   New functionality should include corresponding automated tests where applicable to ensure code quality and prevent regressions. Coverage is measured on the whole code base (every file under `src/`), and `npm run test:coverage` (run in CI) fails below 90% lines, statements, functions or branches. Do not add coverage exclusions for components, pages, hooks or utilities; the few allowed exclusions are listed with their reasons in `vitest.config.mts`. Render components with React Testing Library inside `NextIntlClientProvider` with the real catalogs (see `tests/support/intl.tsx`), and use the browser stand-ins in `tests/setup.ts` and `tests/support/browser.ts` instead of new ad-hoc mocks.
 
 4. **Commit Messages:**
    Use clear, descriptive commit messages following Conventional Commits (e.g., `feat: add social share buttons`, `fix: header logo alignment`).
