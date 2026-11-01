@@ -13,10 +13,25 @@ import {
 import { useLenis } from "lenis/react";
 import { ArrowUpRight, Heart, Sparkle } from "lucide-react";
 import MeshCanvas from "@/components/footer/MeshCanvas";
+import SiteShareButton from "@/components/footer/SiteShareButton";
 import { BrandIcon, type SocialKey } from "@/components/icons/BrandIcon";
 import { SITE_LINKS } from "@/config/links";
+import { LEGAL_DOCUMENTS } from "@/config/legal";
+import { SUPPORT_PAGE } from "@/config/support";
+import { Link, usePathname } from "@/i18n/navigation";
 
 const ease = [0.16, 1, 0.3, 1] as const;
+
+/** Teaser timing (ms): when the one-time hover demo opens after scrolling into view, and when it closes again. */
+const TEASER_OPEN_DELAY_MS = 400;
+const TEASER_CLOSE_DELAY_MS = 2200;
+
+/** Small links in the bottom bar (Privacy, Terms, Support) and the share button beside them. */
+const BOTTOM_BAR_LINK =
+  "rounded-sm transition-colors hover:text-footer-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-bright";
+
+/** Organisation name in the made-with credit, with its logo right before it; never wraps between logo and name. */
+const ORG_CREDIT_LINK = `inline-flex items-center gap-1.5 whitespace-nowrap ${BOTTOM_BAR_LINK}`;
 
 const SOCIALS: SocialKey[] = ["github", "discord", "x", "telegram", "linkedin", "youtube"];
 
@@ -114,8 +129,8 @@ function SplitWordmark() {
   // Demonstrate the interaction once when it scrolls into view (helps touch users discover it)
   useEffect(() => {
     if (!inView || reduce) return;
-    const open = window.setTimeout(() => setTeaser(true), 400);
-    const close = window.setTimeout(() => setTeaser(false), 2200);
+    const open = window.setTimeout(() => setTeaser(true), TEASER_OPEN_DELAY_MS);
+    const close = window.setTimeout(() => setTeaser(false), TEASER_CLOSE_DELAY_MS);
     return () => {
       window.clearTimeout(open);
       window.clearTimeout(close);
@@ -243,6 +258,7 @@ export default function Footer() {
   const t = useTranslations("Footer");
   const tNav = useTranslations("Navigation");
   const scrollTo = useSmoothScrollTo();
+  const onHome = usePathname() === "/";
   const year = new Date().getFullYear();
 
   const onAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -278,6 +294,11 @@ export default function Footer() {
         { label: t("links.stabilityNexus"), href: SITE_LINKS.stabilityNexus, external: true },
       ],
     },
+  ];
+
+  const legalLinks = [
+    { label: t("links.privacy"), href: LEGAL_DOCUMENTS.privacy.path },
+    { label: t("links.terms"), href: LEGAL_DOCUMENTS.terms.path },
   ];
 
   return (
@@ -374,15 +395,10 @@ export default function Footer() {
           <div key={col.title} className="md:col-span-2">
             <p className="mb-5 text-xs font-semibold uppercase tracking-[0.18em] text-accent-soft">{col.title}</p>
             <ul className="space-y-3">
-              {col.links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    {...(link.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : { onClick: (e: React.MouseEvent<HTMLAnchorElement>) => onAnchorClick(e, link.href) })}
-                    className="group inline-flex items-center gap-1 text-footer-muted transition-colors hover:text-footer-text"
-                  >
+              {col.links.map((link) => {
+                const className = "group inline-flex items-center gap-1 text-footer-muted transition-colors hover:text-footer-text";
+                const content = (
+                  <>
                     <span className="relative">
                       {link.label}
                       <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-accent-bright transition-transform duration-300 group-hover:scale-x-100" />
@@ -393,9 +409,29 @@ export default function Footer() {
                         aria-hidden
                       />
                     )}
-                  </a>
-                </li>
-              ))}
+                  </>
+                );
+                return (
+                  <li key={link.label}>
+                    {/* Section anchors scroll on the home page; other pages link to the section there */}
+                    {link.external || onHome ? (
+                      <a
+                        href={link.href}
+                        {...(link.external
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : { onClick: (e: React.MouseEvent<HTMLAnchorElement>) => onAnchorClick(e, link.href) })}
+                        className={className}
+                      >
+                        {content}
+                      </a>
+                    ) : (
+                      <Link href={{ pathname: "/", hash: link.href.slice(1) }} className={className}>
+                        {content}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         ))}
@@ -407,14 +443,27 @@ export default function Footer() {
       </div>
 
       {/* ---------- Bottom bar ---------- */}
-      <div className="mx-auto mt-10 flex w-full max-w-[1536px] flex-col items-center justify-between gap-5 border-t border-footer-border px-6 py-7 sm:flex-row sm:px-8 md:px-12 lg:px-16">
-        <p className="text-center text-sm text-footer-muted sm:text-left">{t("copyright", { year })}</p>
-        <a
-          href={SITE_LINKS.aossie}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group flex items-center gap-1.5 text-sm text-footer-muted transition-colors hover:text-footer-text"
-        >
+      {/* From lg it is a three-cell grid whose equal side cells keep the links centred on the viewport */}
+      <div className="mx-auto mt-10 flex w-full max-w-[1536px] flex-col items-center gap-5 border-t border-footer-border px-6 py-7 text-center text-sm text-footer-muted sm:px-8 md:px-12 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-x-8 lg:px-16">
+        <p className="lg:justify-self-start lg:text-left">{t("copyright", { year })}</p>
+        <ul className="flex flex-wrap justify-center gap-x-5 gap-y-2">
+          {legalLinks.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className={BOTTOM_BAR_LINK}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+          {/* Kept together so the share button never wraps onto a line of its own */}
+          <li className="flex items-center gap-x-5">
+            <Link href={SUPPORT_PAGE.path} className={`inline-flex items-center gap-1.5 ${BOTTOM_BAR_LINK}`}>
+              <Heart className="h-3.5 w-3.5" aria-hidden />
+              {t("links.support")}
+            </Link>
+            <SiteShareButton className={`inline-flex cursor-pointer items-center ${BOTTOM_BAR_LINK}`} />
+          </li>
+        </ul>
+        <p className="group flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 lg:justify-self-end lg:justify-end">
           {t.rich("madeWith", {
             heart: () => (
               <Heart
@@ -423,8 +472,28 @@ export default function Footer() {
                 className="h-4 w-4 fill-brand-primary text-brand-primary transition-transform duration-300 group-hover:scale-125"
               />
             ),
+            // Each logo is decorative: the organisation's name follows it inside the same link
+            aossie: (name) => (
+              <a href={SITE_LINKS.aossie} target="_blank" rel="noopener noreferrer" className={ORG_CREDIT_LINK}>
+                <Image src="/brand/icons/aossie_logo.svg" alt="" aria-hidden width={22} height={24} className="h-5 w-auto" />
+                {name}
+              </a>
+            ),
+            sn: (name) => (
+              <a href={SITE_LINKS.stabilityNexus} target="_blank" rel="noopener noreferrer" className={ORG_CREDIT_LINK}>
+                <Image
+                  src="/brand/icons/stability_nexus_logo.svg"
+                  alt=""
+                  aria-hidden
+                  width={21}
+                  height={24}
+                  className="h-5 w-auto"
+                />
+                {name}
+              </a>
+            ),
           })}
-        </a>
+        </p>
       </div>
     </footer>
   );

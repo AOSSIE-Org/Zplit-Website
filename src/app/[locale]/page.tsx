@@ -5,6 +5,7 @@ import InnovationSection from "@/components/InnovationSection";
 import FeaturesShowcase from "@/components/features/FeaturesShowcase";
 import FaqSection from "@/components/FaqSection";
 import Footer from "@/components/footer/Footer";
+import { SITE_URL } from "@/config/site";
 
 export default async function Home({
   params,
@@ -27,8 +28,8 @@ export default async function Home({
     "publisher": {
       "@type": "Organization",
       "name": "AOSSIE",
-      "url": "https://zplit.aossie.org",
-      "logo": "https://zplit.aossie.org/brand/icons/aossie_logo.svg",
+      "url": SITE_URL,
+      "logo": `${SITE_URL}/brand/icons/aossie_logo.svg`,
     },
     "inLanguage": locale,
   };
