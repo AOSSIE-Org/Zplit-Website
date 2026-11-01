@@ -48,6 +48,8 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
+  // Undo vi.spyOn spies even when a test fails before restoring its own
+  vi.restoreAllMocks();
   if (vi.isFakeTimers()) {
     // Let pending animation frames run (jsdom schedules them on an interval) so framer-motion's
     // frame loop is not left waiting for a frame that the real timers will never deliver

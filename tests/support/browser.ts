@@ -287,6 +287,8 @@ export function resetBrowserMocks() {
   notifyMedia();
   Object.assign(page, { scrollTop: 0, scrollHeight: 0, clientHeight: 0 });
   Object.defineProperty(window, "scrollY", { configurable: true, value: 0 });
+  // Tests override it with defineProperty, which vi.restoreAllMocks does not undo
+  Object.defineProperty(window, "devicePixelRatio", { configurable: true, value: 1 });
   canvasContexts.length = 0;
   elementAnimations.length = 0;
   MockIntersectionObserver.instances.clear();

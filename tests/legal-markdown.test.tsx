@@ -44,6 +44,12 @@ describe("resolveLegalHref", () => {
     expect(resolveLegalHref("javascript:alert(1)", links)).toBeNull();
     expect(resolveLegalHref("other.md", links)).toBeNull();
   });
+
+  it("keeps site paths but drops protocol-relative links to other hosts", () => {
+    expect(resolveLegalHref("/support", links)).toBe("/support");
+    expect(resolveLegalHref("//example.org", links)).toBeNull();
+    expect(resolveLegalHref("/\\example.org", links)).toBeNull();
+  });
 });
 
 describe("LegalDocument", () => {
@@ -65,11 +71,12 @@ describe("LegalDocument", () => {
 });
 
 describe("legal Markdown properties", () => {
-  const SAFE = /^(https?:|mailto:|\/|#)/i;
+  // Same rule as SAFE_HREF: a single leading slash is a site path; "//host" and "/\host" are protocol-relative
+  const SAFE = /^(https?:|mailto:|#|\/(?![/\\]))/i;
 
   it("property: links resolve to the site's legal pages, a safe URL, or nothing", () => {
     fc.assert(
-      fc.property(fc.oneof(fc.webUrl(), fc.string(), fc.constantFrom("PRIVACY.md", "./TERMS.md", "javascript:alert(1)", "data:text/html,x")), (href) => {
+      fc.property(fc.oneof(fc.webUrl(), fc.string(), fc.constantFrom("PRIVACY.md", "./TERMS.md", "javascript:alert(1)", "data:text/html,x", "//example.org", "/\\example.org", "/support")), (href) => {
         const resolved = resolveLegalHref(href, links);
         if (resolved !== null) expect(resolved === links.privacy || resolved === links.terms || SAFE.test(resolved)).toBe(true);
         if (/^\s*(javascript|data|vbscript):/i.test(href)) expect(resolved).toBeNull();
