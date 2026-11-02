@@ -102,7 +102,7 @@ export default function Hero() {
               >
                 <span>{t("poweredBy")}</span>
                 <a
-                  href="https://aossie.org"
+                  href={SITE_LINKS.aossie}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 underline underline-offset-4 hover:text-brand-primary transition-colors cursor-pointer group"

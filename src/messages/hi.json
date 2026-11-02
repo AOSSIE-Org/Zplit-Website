@@ -324,6 +324,33 @@
       }
     }
   },
+  "PrivacyPage": {
+    "metaTitle": "गोपनीयता नीति | ज़प्लिट",
+    "metaDescription": "ज़प्लिट वेबसाइट आपकी जानकारी को कैसे संभालती है।"
+  },
+  "TermsPage": {
+    "metaTitle": "सेवा की शर्तें | ज़प्लिट",
+    "metaDescription": "ज़प्लिट वेबसाइट के उपयोग की शर्तें।"
+  },
+  "SupportPage": {
+    "metaTitle": "ज़प्लिट का समर्थन करें",
+    "metaDescription": "ज़प्लिट को निःशुल्क और ओपन सोर्स बनाए रखने में मदद करें।",
+    "madeBy": "द्वारा बनाया गया प्रोजेक्ट",
+    "supportedBy": "समर्थक",
+    "organizationDescription": "AOSSIE एक ऑस्ट्रेलियाई गैर-लाभकारी संगठन है जो ओपन-सोर्स प्रोजेक्ट्स का समर्थन करता है और उन्हें एक साथ लाता है।"
+  },
+  "Legal": {
+    "englishOnly": "यह दस्तावेज़ केवल अंग्रेज़ी में उपलब्ध है।"
+  },
+  "Share": {
+    "trigger": "यह पेज शेयर करें",
+    "share": "शेयर करें",
+    "close": "बंद करें",
+    "copy": "कॉपी करें",
+    "copied": "कॉपी हो गया!",
+    "copyFailed": "विफल",
+    "urlLabel": "शेयर करने का URL"
+  },
   "Footer": {
     "ctaTitle": "बिना सर्वर के बांटने को तैयार?",
     "ctaDesc": "ज़प्लिट को AOSSIE समुदाय खुले तौर पर बना रहा है।<br></br>सोर्स लें, खुद बिल्ड करें, या आगे की दिशा तय करने में मदद करें।",
@@ -352,7 +379,10 @@
       "sourceCode": "सोर्स कोड",
       "reportIssue": "समस्या रिपोर्ट करें",
       "aossie": "AOSSIE",
-      "stabilityNexus": "Stability Nexus"
+      "stabilityNexus": "Stability Nexus",
+      "privacy": "गोपनीयता नीति",
+      "terms": "सेवा की शर्तें",
+      "support": "समर्थन करें"
     },
     "social": {
       "github": "GitHub",
@@ -364,7 +394,7 @@
     },
     "wordmarkReveal": "बिल बांटें, अपनी गोपनीयता नहीं।",
     "copyright": "© {year} AOSSIE. सर्वाधिकार सुरक्षित।",
-    "madeWith": "AOSSIE समुदाय द्वारा <heart></heart> से बनाया गया",
+    "madeWith": "<aossie>AOSSIE</aossie> और <sn>Stability Nexus</sn> द्वारा <heart></heart> से बनाया गया",
     "heartLabel": "प्यार",
     "getItOn": "इस पर पाएं",
     "googlePlay": "Google Play"

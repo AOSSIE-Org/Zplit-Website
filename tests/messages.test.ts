@@ -2,6 +2,8 @@ import { describe, it, expect } from "vitest";
 import en from "@/messages/en.json";
 import hi from "@/messages/hi.json";
 import { languages } from "@/config/languages";
+import { LEGAL_DOCUMENTS } from "@/config/legal";
+import { SUPPORT_PAGE } from "@/config/support";
 
 type Catalog = { [key: string]: string | Catalog };
 
@@ -45,5 +47,13 @@ describe("Translation catalogs", () => {
     const flat = flatten(catalogs[code]);
     expect(flat["Home.metaTitle"]?.trim()).toBeTruthy();
     expect(flat["Home.metaDescription"]?.trim()).toBeTruthy();
+  });
+
+  it.each(Object.keys(catalogs))("%s defines the SEO title and description of every legal page and the support page", (code) => {
+    const flat = flatten(catalogs[code]);
+    for (const { namespace } of [...Object.values(LEGAL_DOCUMENTS), SUPPORT_PAGE]) {
+      expect(flat[`${namespace}.metaTitle`]?.trim(), namespace).toBeTruthy();
+      expect(flat[`${namespace}.metaDescription`]?.trim(), namespace).toBeTruthy();
+    }
   });
 });

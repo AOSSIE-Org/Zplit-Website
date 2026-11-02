@@ -9,5 +9,7 @@ export const SITE_LINKS = {
   linkedin: "https://linkedin.com/company/stability-nexus",
   youtube: "https://www.youtube.com/@StabilityNexus",
   aossie: "https://aossie.org",
+  githubSponsors: "https://github.com/sponsors/AOSSIE-Org",
   stabilityNexus: "https://stability.nexus",
+  gsoc: "https://summerofcode.withgoogle.com",
 } as const;

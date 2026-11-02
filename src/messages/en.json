@@ -324,6 +324,33 @@
       }
     }
   },
+  "PrivacyPage": {
+    "metaTitle": "Privacy Policy | Zplit",
+    "metaDescription": "How the Zplit website handles your information."
+  },
+  "TermsPage": {
+    "metaTitle": "Terms of Service | Zplit",
+    "metaDescription": "The terms for using the Zplit website."
+  },
+  "SupportPage": {
+    "metaTitle": "Support Zplit",
+    "metaDescription": "Help keep Zplit free and open source.",
+    "madeBy": "A project made by",
+    "supportedBy": "Supported by",
+    "organizationDescription": "AOSSIE is an Australian not-for-profit organisation that supports and brings together open-source projects."
+  },
+  "Legal": {
+    "englishOnly": "This document is available in English only."
+  },
+  "Share": {
+    "trigger": "Share this page",
+    "share": "Share",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "copyFailed": "Failed",
+    "urlLabel": "URL to share"
+  },
   "Footer": {
     "ctaTitle": "Ready to split without servers?",
     "ctaDesc": "Zplit is being built in the open by the AOSSIE community.<br></br>Grab the source, build it yourself, or help shape what comes next.",
@@ -352,7 +379,10 @@
       "sourceCode": "Source code",
       "reportIssue": "Report an issue",
       "aossie": "AOSSIE",
-      "stabilityNexus": "Stability Nexus"
+      "stabilityNexus": "Stability Nexus",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "support": "Support us"
     },
     "social": {
       "github": "GitHub",
@@ -364,7 +394,7 @@
     },
     "wordmarkReveal": "Split bills, not your privacy.",
     "copyright": "© {year} AOSSIE. All rights reserved.",
-    "madeWith": "Made with <heart></heart> by AOSSIE Community",
+    "madeWith": "Made with <heart></heart> by <aossie>AOSSIE</aossie> and <sn>Stability Nexus</sn>",
     "heartLabel": "love",
     "getItOn": "Get it on",
     "googlePlay": "Google Play"

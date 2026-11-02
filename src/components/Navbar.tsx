@@ -49,6 +49,9 @@ export default function Navbar() {
     { name: t("faq"), href: "#faq" },
   ];
 
+  // The sections live on the home page, so other pages link to them there
+  const sectionHref = (href: string) => (pathname === "/" ? href : { pathname: "/", hash: href.slice(1) });
+
   // On the home page the logo scrolls back to the top; elsewhere it navigates home.
   const handleScrollToTop = (e: React.MouseEvent) => {
     if (pathname !== "/") return;
@@ -58,7 +61,7 @@ export default function Navbar() {
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#")) {
+    if (pathname === "/" && href.startsWith("#")) {
       e.preventDefault();
       scrollToTarget(href);
       setMobileMenuOpen(false);
@@ -100,7 +103,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
-                  href={link.href}
+                  href={sectionHref(link.href)}
                   onClick={(e) => handleNavClick(e, link.href)}
                   className="text-[15px] font-normal text-nav-text hover:text-brand-primary transition-colors"
                 >
@@ -179,7 +182,7 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                href={link.href}
+                href={sectionHref(link.href)}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="px-3 py-2 rounded-md text-base font-medium text-foreground-primary hover:bg-background-secondary hover:text-brand-primary transition-colors"
               >

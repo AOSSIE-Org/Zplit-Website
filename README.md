@@ -179,7 +179,7 @@ Here is a breakdown of the key i18n directories and files:
 │   │   ├── en.json             # English translation dictionary
 │   │   └── hi.json             # Hindi translation dictionary
 │   ├── app/
-│   │   ├── (root)/             # Bare `/`: full metadata + meta-refresh to /en (static export)
+│   │   ├── (root)/             # Bare `/`: full metadata + instant redirect to /en (static export)
 │   │   ├── sitemap.ts          # Statically generated localized sitemaps
 │   │   └── [locale]/           # Localized route group
 │   │       ├── layout.tsx      # Multi-lingual layout injecting client context & translations
@@ -400,7 +400,9 @@ npm run test:watch      # re-run on file changes
 npm run test:coverage   # with coverage; fails below 90% (same as CI)
 ```
 
-Tests in [`tests/`](tests/) cover SEO metadata, the sitemap, site links and translation-catalog parity (keys, empty strings, ICU placeholders), including [fast-check](https://fast-check.dev) property tests.
+Coverage is measured on the **whole code base**: every file under [`src/`](src/) (routes, components, providers, hooks, config, i18n and lib). The only exclusions, each with its reason, are listed in [`vitest.config.mts`](vitest.config.mts) (currently just type declaration files, `*.d.ts`). `npm run test:coverage` fails if lines, statements, functions or branches drop below 90%, and CI runs it on every push and pull request.
+
+Tests in [`tests/`](tests/) render every page and component with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) in jsdom, inside `NextIntlClientProvider` with the real English and Hindi catalogs. They check rendered text, links, ARIA state and interactions (menus, tabs, accordion and search, theme and language switching, the tech-stack builder, scroll-driven features, reduced-motion paths), plus SEO metadata, the sitemap, site links and translation-catalog parity. [fast-check](https://fast-check.dev) property tests cover invariants such as FAQ search results, tech-stack block packing, safe legal-document links, the footer canvas staying in bounds and clean sitemap URLs. Browser APIs jsdom lacks (matchMedia, IntersectionObserver, ResizeObserver, canvas, Web Animations, scrolling) and Next's router and image loader are stood in for in [`tests/setup.ts`](tests/setup.ts) and [`tests/support/`](tests/support/).
 
 ---
 

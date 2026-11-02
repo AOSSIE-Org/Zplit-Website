@@ -241,6 +241,11 @@ const GRID_CONSTANTS = {
   APEX_HEIGHT: 150,
 };
 
+/** Equip animation timing (ms): impact bounce after a block lands, stagger between blocks in "equip all", and the final bounce. */
+const IMPACT_DELAY_MS = 990;
+const EQUIP_ALL_STAGGER_MS = 75;
+const EQUIP_ALL_FINISH_DELAY_MS = 200;
+
 const STAGE_WIDTH = 390;
 /** Tall enough for every module stacked (6 rows) on top of the base block. */
 const STAGE_HEIGHT = 600;
@@ -901,7 +906,7 @@ export default function LegoTechStackBuilder({
 
     const impactTimer = setTimeout(() => {
       controls.start({ y: [0, 8, -2, 0], transition: { duration: 0.35, times: [0, 0.4, 0.7, 1], ease: "easeInOut" } });
-    }, 990);
+    }, IMPACT_DELAY_MS);
     timersRef.current.push(impactTimer);
   }, [animatingBlocks, controls]);
 
@@ -919,10 +924,10 @@ export default function LegoTechStackBuilder({
         if (idx === remaining.length - 1) {
           const finishTimer = setTimeout(() => {
             controls.start({ y: [0, 8, -2, 0], transition: { duration: 0.35, times: [0, 0.4, 0.7, 1], ease: "easeInOut" } });
-          }, 200);
+          }, EQUIP_ALL_FINISH_DELAY_MS);
           timersRef.current.push(finishTimer);
         }
-      }, idx * 75);
+      }, idx * EQUIP_ALL_STAGGER_MS);
       timersRef.current.push(timer);
     });
   }, [modules, equippedIds, controls]);

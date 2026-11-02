@@ -659,6 +659,8 @@ export function AnalyticsVisual({ chip }: { chip: string }) {
 
 const CIPHER_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 const CIPHER_SEED = "k9Qx+2fLzA7mR0vT4bWc8yNe";
+/** How often (ms) the scrambled cipher text re-rolls. */
+const CIPHER_TICK_MS = 90;
 
 function useCipherText(length: number, inView = true) {
   const reduce = useReducedMotion();
@@ -670,7 +672,7 @@ function useCipherText(length: number, inView = true) {
       setText(
         Array.from({ length }, () => CIPHER_CHARS[Math.floor(Math.random() * CIPHER_CHARS.length)]).join("")
       );
-    }, 90);
+    }, CIPHER_TICK_MS);
     return () => window.clearInterval(id);
   }, [length, reduce, inView]);
 

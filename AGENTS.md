@@ -14,7 +14,7 @@ This is the codebase for the Zplit website, an open-source decentralized payment
 - **Build:** `npm run build` (static export to `out/`)
 - **Develop:** `npm run dev`
 - **Lint:** `npm run lint`
-- **Test:** `npm test` · `npm run test:coverage` (90% threshold on `src/config`, `src/i18n/metadata.ts`, `src/app/sitemap.ts`; enforced in CI)
+- **Test:** `npm test` · `npm run test:coverage` (Vitest + React Testing Library in jsdom, fast-check property tests; 90% line/statement/function/branch thresholds on all of `src/`, exclusions listed in [`vitest.config.mts`](vitest.config.mts); enforced in CI). Shared browser stand-ins (matchMedia, IntersectionObserver, ResizeObserver, canvas, router) live in [`tests/setup.ts`](tests/setup.ts) and [`tests/support/`](tests/support/).
 
 ---
 
@@ -38,11 +38,11 @@ This is the codebase for the Zplit website, an open-source decentralized payment
 ## 📦 Project Boundaries
 
 - **Config alias map:** Webpack & Turbopack alias resolvers are manually defined in [`next.config.ts`](next.config.ts) mapping `"next-intl/config"` to our local request setup. Do not import the native `@swc/core` compiler plugin wrapper `createNextIntlPlugin` directly to avoid security policy native module blocks.
-- **External Links:** Never hard-code outbound URLs (Play Store, GitHub, Discord, socials) in components. Add them to [`src/config/links.ts`](src/config/links.ts) and import `SITE_LINKS`.
+- **External Links:** External links live in [`src/config/links.ts`](src/config/links.ts) (import `SITE_LINKS`; site origin `SITE_URL` in [`src/config/site.ts`](src/config/site.ts)); never hard-code URLs (Play Store, GitHub, Discord, socials, the site's own domain) in components.
 - **Brand Icons:** lucide-react no longer ships brand marks; use `BrandIcon` from [`src/components/icons/BrandIcon.tsx`](src/components/icons/BrandIcon.tsx).
 - **Dark surfaces:** The features showcase card and footer are dark in both themes. Style them with the `showcase-*`, `footer-*` and `accent-*` tokens (never raw hex classes). `FeatureVisuals.tsx` is the one intentional exception: it draws fixed-palette "app screens".
 - **Pinned layouts:** Use the `tall:` custom variant (min-height 860px) for height-dependent spacing inside sticky/pinned sections.
 - **Motion:** Respect `useReducedMotion()` / `motion-reduce:` and pause or unmount off-screen animations (see `LazyVisual`, `MeshCanvas`).
 - **Branding Assets:** The official branding logo, favicon, and style specifications reside inside [`public/brand/`](public/brand/). The social share image is [`public/og-image.png`](public/og-image.png) (1200x630 PNG; never point Open Graph at an SVG).
-- **Root route:** [`src/app/(root)/`](src/app/(root)/) serves the bare `/` with the default locale's metadata and a `<meta http-equiv="refresh">` to `/en`. Do not replace it with `redirect()`, which exports an empty error page.
+- **Root route:** [`src/app/(root)/`](src/app/(root)/) serves the bare `/` with the default locale's metadata and an inline `location.replace("/en")` that runs as soon as it is parsed (the `<meta http-equiv="refresh">` and link are only a no-JS fallback; keep the `(root)` layout free of stylesheets so nothing delays it). Do not replace it with `redirect()`, which exports an empty error page.
 
