@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { themeInitScript } from "@/components/providers/theme-script";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import "./globals.css";
 
@@ -66,6 +67,10 @@ export default async function RootLayout({
       className={`${inter.variable} ${devanagari.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        {/* Sets the theme class before <body> is parsed, so the first paint is never the wrong theme */}
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
