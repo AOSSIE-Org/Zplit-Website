@@ -1,8 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import SupportUsButton from "support-us-button";
-import "support-us-button/style.css";
+import SupportUsButton from "@aossie-org/support-us-button";
+import "@aossie-org/support-us-button/style.css";
 import { SITE_LINKS } from "@/config/links";
 import { SUPPORT_PAGE, SUPPORTERS } from "@/config/support";
 

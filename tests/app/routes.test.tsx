@@ -17,6 +17,7 @@ import { SITE_LINKS } from "@/config/links";
 import { setRequestLocale } from "../support/next-intl-server";
 import { catalogs, locales, renderWithIntl, translator, type TestLocale } from "../support/intl";
 import { setPathname } from "../support/navigation";
+import { themeInitScript } from "@/components/providers/theme-script";
 
 vi.mock("next-intl/server", () => import("../support/next-intl-server"));
 vi.mock("next/font/google", () => ({
@@ -81,6 +82,9 @@ describe("[locale] layout", () => {
     const { NextIntlClientProvider } = await import("next-intl");
     expect(findElement(tree, NextIntlClientProvider)?.props.messages).toBe(catalogs[locale]);
     expect(findElement(tree, "main")).toBeTruthy();
+    // The theme is applied from <head>, before <body> exists, so the first paint is never the wrong theme
+    const script = findElement(findElement(tree, "head"), "script");
+    expect(script?.props.dangerouslySetInnerHTML).toEqual({ __html: themeInitScript });
   });
 
   it("returns the localized home metadata", async () => {
